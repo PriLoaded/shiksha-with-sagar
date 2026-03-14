@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a6e">
+    <title>Teacher Login — Shiksha With Sagar</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
+
+    <div class="login-container">
+        <div class="login-header">
+            <div class="login-logo">🔐</div>
+            <h1>Teacher Login</h1>
+            <p>Shiksha With Sagar — Admin Panel</p>
+        </div>
+
+        <form class="login-form" id="login-form" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="password">Admin Password</label>
+                <input type="password" id="password" placeholder="Enter admin password" required autocomplete="current-password">
+            </div>
+            <div id="login-error" class="form-error hidden"></div>
+            <button type="submit" class="btn-primary btn-full" id="login-btn">
+                <span id="login-btn-text">Login →</span>
+            </button>
+        </form>
+
+        <a href="index.html" class="login-back">← Back to App</a>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+        // If already logged in, go to admin
+        if (sessionStorage.getItem('sws_admin')) {
+            window.location.href = 'admin.html';
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            var btn = document.getElementById('login-btn');
+            var btnText = document.getElementById('login-btn-text');
+            var errorDiv = document.getElementById('login-error');
+            var password = document.getElementById('password').value;
+
+            btn.disabled = true;
+            btnText.textContent = 'Verifying...';
+            errorDiv.classList.add('hidden');
+
+            fetch(API_URL + '?action=verify&password=' + encodeURIComponent(password))
+                .then(function(r) { return r.json(); })
+                .then(function(data) {
+                    if (data.status === 'success') {
+                        sessionStorage.setItem('sws_admin', password);
+                        window.location.href = 'admin.html';
+                    } else {
+                        errorDiv.textContent = '❌ ' + (data.message || 'Wrong password');
+                        errorDiv.classList.remove('hidden');
+                        btn.disabled = false;
+                        btnText.textContent = 'Login →';
+                    }
+                })
+                .catch(function(err) {
+                    errorDiv.textContent = '❌ Network error. Check your internet.';
+                    errorDiv.classList.remove('hidden');
+                    btn.disabled = false;
+                    btnText.textContent = 'Login →';
+                });
+        }
+    </script>
+</body>
+</html>

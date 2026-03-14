@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a6e">
+    <title>Recorded Lectures — Shiksha With Sagar</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <a href="index.html" class="back-btn">← Back</a>
+        <h2>🎥 Recorded Lectures</h2>
+        <p class="page-subtitle">Watch and learn at your own pace</p>
+    </div>
+
+    <!-- Subject Filter -->
+    <div class="filter-bar">
+        <div class="filter-scroll">
+            <button class="filter-pill active" onclick="filterBySubject('All', this)">All</button>
+        </div>
+    </div>
+
+    <!-- Search -->
+    <div class="search-container">
+        <input type="text" id="search-box" class="search-input" placeholder="🔍 Search lectures..." oninput="searchContent()">
+    </div>
+
+    <!-- Content -->
+    <div class="page-content" id="content-area">
+        <div class="loader" id="loader">
+            <div class="spinner"></div>
+            <p>Loading lectures...</p>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+        initVideosPage();
+    </script>
+</body>
+</html>

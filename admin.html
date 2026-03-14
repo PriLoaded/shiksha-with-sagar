@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a6e">
+    <title>Admin — Shiksha With Sagar</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden"></div>
+
+    <!-- Admin Header -->
+    <div class="admin-header">
+        <div class="admin-header-top">
+            <h2>⚙️ Admin Panel</h2>
+            <button class="logout-btn" onclick="adminLogout()">Logout ↗</button>
+        </div>
+        <p>Shiksha With Sagar — Manage Content</p>
+    </div>
+
+    <!-- Admin Tabs -->
+    <div class="admin-tabs">
+        <button class="admin-tab active" onclick="switchAdminTab('videos', this)">🎥 Videos</button>
+        <button class="admin-tab" onclick="switchAdminTab('live', this)">🔴 Live</button>
+        <button class="admin-tab" onclick="switchAdminTab('materials', this)">📚 PDFs</button>
+        <button class="admin-tab" onclick="switchAdminTab('announcements', this)">📢 News</button>
+    </div>
+
+    <!-- ═══════ VIDEOS TAB ═══════ -->
+    <div class="admin-section active" id="tab-videos">
+        <div class="admin-form-card">
+            <h3>➕ Add New Video Lecture</h3>
+            <form onsubmit="addVideo(event)">
+                <div class="form-group">
+                    <label>Video Title *</label>
+                    <input type="text" id="v-title" placeholder="e.g. Chapter 5: Thermodynamics" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject *</label>
+                    <select id="v-subject" required>
+                        <option value="">Select Subject</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Biology">Biology</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>YouTube Video Link *</label>
+                    <input type="url" id="v-link" placeholder="https://www.youtube.com/watch?v=..." required>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="v-date">
+                </div>
+                <button type="submit" class="btn-primary btn-full" id="v-btn">Add Video</button>
+            </form>
+        </div>
+        <h3 class="section-title">📋 Existing Videos</h3>
+        <div id="admin-videos-list" class="admin-list">
+            <div class="loader"><div class="spinner"></div></div>
+        </div>
+    </div>
+
+    <!-- ═══════ LIVE STREAMS TAB ═══════ -->
+    <div class="admin-section" id="tab-live">
+        <div class="admin-form-card">
+            <h3>➕ Add Live Stream</h3>
+            <form onsubmit="addLiveStream(event)">
+                <div class="form-group">
+                    <label>Class Title *</label>
+                    <input type="text" id="l-title" placeholder="e.g. Physics Live — Wave Optics" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject *</label>
+                    <select id="l-subject" required>
+                        <option value="">Select Subject</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Biology">Biology</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>YouTube Live Link *</label>
+                    <input type="url" id="l-link" placeholder="https://www.youtube.com/watch?v=..." required>
+                </div>
+                <div class="form-group">
+                    <label>Scheduled Date &amp; Time</label>
+                    <input type="datetime-local" id="l-time">
+                </div>
+                <button type="submit" class="btn-primary btn-full" id="l-btn">Add Live Stream</button>
+            </form>
+        </div>
+        <h3 class="section-title">📋 Existing Live Streams</h3>
+        <div id="admin-live-list" class="admin-list">
+            <div class="loader"><div class="spinner"></div></div>
+        </div>
+    </div>
+
+    <!-- ═══════ STUDY MATERIAL TAB ═══════ -->
+    <div class="admin-section" id="tab-materials">
+        <div class="admin-form-card">
+            <h3>➕ Add Study Material (PDF)</h3>
+            <form onsubmit="addMaterial(event)">
+                <div class="form-group">
+                    <label>Notes Title *</label>
+                    <input type="text" id="m-title" placeholder="e.g. Physics Ch-1 Handwritten Notes" required>
+                </div>
+                <div class="form-group">
+                    <label>Subject *</label>
+                    <select id="m-subject" required>
+                        <option value="">Select Subject</option>
+                        <option value="Physics">Physics</option>
+                        <option value="Chemistry">Chemistry</option>
+                        <option value="Mathematics">Mathematics</option>
+                        <option value="Biology">Biology</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Google Drive Link *</label>
+                    <input type="url" id="m-link" placeholder="https://drive.google.com/file/d/..." required>
+                </div>
+                <div class="form-group">
+                    <label>File Size</label>
+                    <input type="text" id="m-size" placeholder="e.g. 2.5 MB">
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" id="m-date">
+                </div>
+                <button type="submit" class="btn-primary btn-full" id="m-btn">Add Material</button>
+            </form>
+        </div>
+        <h3 class="section-title">📋 Existing Materials</h3>
+        <div id="admin-materials-list" class="admin-list">
+            <div class="loader"><div class="spinner"></div></div>
+        </div>
+    </div>
+
+    <!-- ═══════ ANNOUNCEMENTS TAB ═══════ -->
+    <div class="admin-section" id="tab-announcements">
+        <div class="admin-form-card">
+            <h3>➕ Post Announcement</h3>
+            <form onsubmit="addAnnouncement(event)">
+                <div class="form-group">
+                    <label>Title *</label>
+                    <input type="text" id="a-title" placeholder="e.g. Exam Schedule Released" required>
+                </div>
+                <div class="form-group">
+                    <label>Message *</label>
+                    <textarea id="a-message" rows="4" placeholder="Type your announcement message..." required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="a-important">
+                        <span>Mark as Important (⚠️ red highlight)</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary btn-full" id="a-btn">Post Announcement</button>
+            </form>
+        </div>
+        <h3 class="section-title">📋 Existing Announcements</h3>
+        <div id="admin-announcements-list" class="admin-list">
+            <div class="loader"><div class="spinner"></div></div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+    <script src="./admin.js"></script>
+    <script>
+        initAdminPanel();
+    </script>
+</body>
+</html>
