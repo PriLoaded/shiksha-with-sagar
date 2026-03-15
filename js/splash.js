@@ -12,8 +12,8 @@
 /* ─── CONFIGURATION ──────────────────────────────────
    You can change these settings:                       */
 
-var SPLASH_DURATION   = 3000;           // Total splash time in ms (3000 = 3 seconds)
-var REDIRECT_PAGE     = 'login.html';   // Page to go to after splash
+var SPLASH_DURATION   = 5000;           // Total splash time in ms (3000 = 3 seconds)
+var REDIRECT_PAGE     = 'index.html';   // Page to go to after splash
 var PARTICLE_COUNT    = 20;             // Number of floating particles
 
 
