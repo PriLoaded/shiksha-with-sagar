@@ -1,4 +1,4 @@
-var CACHE_NAME = 'sws-v5';
+var CACHE_NAME = 'sws-v6';
 
 var FILES = [
     './',
@@ -15,9 +15,11 @@ var FILES = [
     './style.css',
     './css/splash.css',
     './css/login.css',
+    './css/student-dashboard.css',
     './script.js',
     './js/splash.js',
     './js/login.js',
+    './js/student-dashboard.js',
     './admin.js',
     './manifest.json',
     './icons/icon-192x192.png',

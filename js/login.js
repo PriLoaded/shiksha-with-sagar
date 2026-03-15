@@ -26,12 +26,27 @@
 
 // Student demo accounts (add as many as you want)
 var DEMO_STUDENTS = [
-    { email: 'student@sws.com',   password: 'student123', name: 'Demo Student' },
-    { email: 'rahul@sws.com',     password: 'rahul123',   name: 'Rahul Sharma' },
-    { email: 'priya@sws.com',     password: 'priya123',   name: 'Priya Singh' }
-
-    // ➕ Add more students:
-    // { email: 'name@sws.com', password: 'pass123', name: 'Student Name' },
+    {
+        email: 'student@sws.com',
+        password: 'student123',
+        name: 'Demo Student',
+        classId: 'class-11',
+        streamId: 'science-11'
+    },
+    {
+        email: 'rahul@sws.com',
+        password: 'rahul123',
+        name: 'Rahul Sharma',
+        classId: 'class-11',
+        streamId: 'science-11'
+    },
+    {
+        email: 'priya@sws.com',
+        password: 'priya123',
+        name: 'Priya Singh',
+        classId: 'class-12',
+        streamId: 'science-12'
+    }
 ];
 
 // Admin account

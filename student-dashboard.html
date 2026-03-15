@@ -5,196 +5,373 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#1a1a6e">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Student Dashboard — Shiksha With Sagar</title>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Dashboard — Shiksha With Sagar</title>
 
     <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
-    <link rel="stylesheet" href="./style.css">
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/student-dashboard.css">
 
-    <style>
-        .logout-bar {
-            background: var(--card, #fff);
-            padding: 12px 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border-bottom: 1px solid #eee;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .user-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .user-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #4361ee, #3a0ca3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 14px;
-            font-weight: 700;
-        }
-        .user-name {
-            font-size: 14px;
-            font-weight: 600;
-            color: #1a1a2e;
-        }
-        .user-role {
-            font-size: 11px;
-            color: #8b8ba8;
-        }
-        .logout-link {
-            font-size: 13px;
-            color: #ef476f;
-            font-weight: 600;
-            padding: 8px 16px;
-            border-radius: 20px;
-            background: #fce8ef;
-            border: none;
-            cursor: pointer;
-            font-family: inherit;
-        }
-    </style>
-
+    <!-- Auth Guard -->
     <script>
-        // Auth guard — redirect to login if not logged in
-        var user = null;
         try {
-            user = JSON.parse(localStorage.getItem('sws_user'));
-        } catch(e) {}
-        if (!user || user.role !== 'student') {
+            var u = JSON.parse(localStorage.getItem('sws_user'));
+            if (!u || u.role !== 'student') {
+                window.location.replace('login.html');
+            }
+        } catch(e) {
             window.location.replace('login.html');
         }
     </script>
 </head>
 <body>
 
-    <!-- User Bar -->
-    <div class="logout-bar">
-        <div class="user-info">
-            <div class="user-avatar" id="user-avatar">S</div>
-            <div>
-                <div class="user-name" id="user-name">Student</div>
-                <div class="user-role">🎓 Student Account</div>
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 1: MAIN DASHBOARD
+         ══════════════════════════════════════════════ -->
+    <div class="view active" id="view-dashboard">
+
+        <!-- Top Bar -->
+        <div class="dash-topbar">
+            <div class="topbar-left">
+                <div class="topbar-avatar" id="topbar-avatar">S</div>
+                <div class="topbar-info">
+                    <div class="topbar-name" id="topbar-name">Student</div>
+                    <div class="topbar-role">🎓 Student</div>
+                </div>
+            </div>
+            <button class="topbar-logout" onclick="studentLogout()">Logout</button>
+        </div>
+
+        <!-- Dashboard Header -->
+        <div class="dash-header">
+            <div class="dash-header-content">
+                <div class="dash-greeting-row">
+                    <div class="dash-avatar" id="dash-avatar">S</div>
+                    <div class="dash-greeting-text">
+                        <div class="dash-greeting" id="dash-greeting">Good Morning ☀️</div>
+                        <div class="dash-name-row">
+                            <span id="dash-student-name">Student</span> 👋
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-badges">
+                    <div class="dash-badge badge-class">
+                        🏫 <span id="dash-class-name">Class 11</span>
+                    </div>
+                    <div class="dash-badge badge-stream">
+                        📋 <span id="dash-stream-name">Science Stream</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-header-wave">
+                <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                    <path d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z" fill="#f0f2f5"/>
+                </svg>
             </div>
         </div>
-        <button class="logout-link" onclick="logout()">Logout</button>
-    </div>
 
-    <!-- HOME HEADER -->
-    <div class="home-header">
-        <div class="header-content">
-            <div class="header-greeting" id="greeting"></div>
-            <div class="brand-logo">📖</div>
-            <h1>Shiksha With Sagar</h1>
-            <p class="header-tagline">Your complete learning companion</p>
-        </div>
-        <div class="header-wave">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-                <path d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z" fill="#f0f2f5"/>
-            </svg>
-        </div>
-    </div>
-
-    <!-- STATS -->
-    <div class="home-stats">
-        <div class="stat-item">
-            <span class="stat-number" id="stat-videos">—</span>
-            <span class="stat-label">Lectures</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-            <span class="stat-number" id="stat-notes">—</span>
-            <span class="stat-label">Notes</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-            <span class="stat-number" id="stat-updates">—</span>
-            <span class="stat-label">Updates</span>
-        </div>
-    </div>
-
-    <!-- NAV CARDS -->
-    <div class="home-cards">
-        <a href="videos.html" class="card card-lectures">
-            <div class="card-icon">🎥</div>
-            <div class="card-info">
-                <h3>Recorded Lectures</h3>
-                <p>Watch video lessons by subject</p>
+        <!-- Stats Row -->
+        <div class="dash-stats">
+            <div class="dash-stat-card">
+                <span class="dash-stat-num" id="stat-subjects">0</span>
+                <span class="dash-stat-label">Subjects</span>
             </div>
-            <div class="card-arrow">›</div>
-        </a>
-
-        <a href="livestreams.html" class="card card-live">
-            <div class="card-icon">🔴</div>
-            <div class="card-info">
-                <h3>Live Classes</h3>
-                <p id="live-home-status">Join live sessions</p>
+            <div class="dash-stat-card">
+                <span class="dash-stat-num" id="stat-chapters">0</span>
+                <span class="dash-stat-label">Chapters</span>
             </div>
-            <div class="card-arrow">›</div>
-        </a>
-
-        <a href="study-material.html" class="card card-materials">
-            <div class="card-icon">📚</div>
-            <div class="card-info">
-                <h3>Study Material</h3>
-                <p>Download notes &amp; PDFs</p>
+            <div class="dash-stat-card">
+                <span class="dash-stat-num" id="stat-total-videos">0</span>
+                <span class="dash-stat-label">Videos</span>
             </div>
-            <div class="card-arrow">›</div>
-        </a>
-
-        <a href="announcements.html" class="card card-announcements">
-            <div class="card-icon">📢</div>
-            <div class="card-info">
-                <h3>Announcements</h3>
-                <p>Important updates &amp; notices</p>
+            <div class="dash-stat-card">
+                <span class="dash-stat-num" id="stat-total-notes">0</span>
+                <span class="dash-stat-label">Notes</span>
             </div>
-            <div class="card-arrow">›</div>
-        </a>
+        </div>
+
+        <!-- My Subjects -->
+        <div class="section-heading">
+            <h2>📚 My Subjects</h2>
+            <span id="subject-count-label">0 subjects</span>
+        </div>
+
+        <div class="subjects-grid" id="subjects-grid">
+            <!-- Subject cards rendered by JS -->
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section-heading">
+            <h2>⚡ Quick Access</h2>
+        </div>
+
+        <div class="quick-actions">
+            <a href="livestreams.html" class="quick-action-btn">
+                <span class="quick-action-icon">🔴</span>
+                <span class="quick-action-label">Live Class</span>
+            </a>
+            <a href="announcements.html" class="quick-action-btn">
+                <span class="quick-action-icon">📢</span>
+                <span class="quick-action-label">Updates</span>
+            </a>
+            <a href="study-material.html" class="quick-action-btn">
+                <span class="quick-action-icon">📄</span>
+                <span class="quick-action-label">All Notes</span>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="dash-footer">
+            <p>Shiksha With Sagar © 2025 · Made with ❤️ by Sagar Sir</p>
+        </div>
+
     </div>
 
-    <div class="home-footer">
-        <p>Made with ❤️ by <strong>Sagar Sir</strong></p>
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 2: CHAPTERS LIST (for a subject)
+         ══════════════════════════════════════════════ -->
+    <div class="view hidden" id="view-chapters">
+
+        <div class="chapters-header" id="chapters-header" style="background: linear-gradient(145deg, #4361ee, #2d3cb5)">
+            <button class="chapters-back-btn" onclick="backToDashboard()">← Back to Dashboard</button>
+            <div class="chapters-subject-row">
+                <div class="chapters-icon-big" id="chapters-subject-icon">⚛️</div>
+                <div class="chapters-subject-info">
+                    <h2 id="chapters-subject-name">Physics</h2>
+                    <p id="chapters-subject-count">8 Chapters</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chapters-list" id="chapters-list">
+            <!-- Chapter cards rendered by JS -->
+        </div>
+
     </div>
 
-    <script src="./script.js"></script>
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 3: CHAPTER DETAIL (videos, notes, quiz)
+         ══════════════════════════════════════════════ -->
+    <div class="view hidden" id="view-chapter-detail">
+
+        <div class="detail-header" id="detail-header" style="background: linear-gradient(145deg, #4361ee, #2d3cb5)">
+            <button class="chapters-back-btn" onclick="backToChapters()">← Back to Chapters</button>
+            <div class="detail-title-row">
+                <div class="detail-icon-box" id="detail-subject-icon">⚛️</div>
+                <div class="detail-title-info">
+                    <h2 id="detail-chapter-name">Chapter Name</h2>
+                    <p id="detail-subject-name">Physics</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chapter-content-area" id="chapter-content-area">
+            <!-- Content rendered by JS -->
+        </div>
+
+    </div>
+
+
+    <script src="./js/student-dashboard.js"></script>
     <script>
-        // Set user info
-        var u = null;
-        try { u = JSON.parse(localStorage.getItem('sws_user')); } catch(e){}
-        if (u) {
-            document.getElementById('user-name').textContent = u.name || 'Student';
-            document.getElementById('user-avatar').textContent = (u.name || 'S').charAt(0).toUpperCase();
-        }
+        initStudentDashboard();
+    </script>
+</body>
+</html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a6e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Dashboard — Shiksha With Sagar</title>
 
-        // Greeting
-        var h = new Date().getHours();
-        var greet = '';
-        if (h >= 5 && h < 12)       greet = 'Good Morning ☀️';
-        else if (h >= 12 && h < 17) greet = 'Good Afternoon 🌤️';
-        else if (h >= 17 && h < 21) greet = 'Good Evening 🌙';
-        else                         greet = 'Happy Studying 🌟';
-        document.getElementById('greeting').textContent = greet + (u ? ', ' + u.name.split(' ')[0] : '');
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/student-dashboard.css">
 
-        function logout() {
-            localStorage.removeItem('sws_user');
-            sessionStorage.removeItem('sws_user');
-            sessionStorage.removeItem('sws_splash_done');
+    <!-- Auth Guard -->
+    <script>
+        try {
+            var u = JSON.parse(localStorage.getItem('sws_user'));
+            if (!u || u.role !== 'student') {
+                window.location.replace('login.html');
+            }
+        } catch(e) {
             window.location.replace('login.html');
         }
+    </script>
+</head>
+<body>
 
-        // Init home stats
-        if (typeof initHomePage === 'function') {
-            initHomePage();
-        }
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 1: MAIN DASHBOARD
+         ══════════════════════════════════════════════ -->
+    <div class="view active" id="view-dashboard">
+
+        <!-- Top Bar -->
+        <div class="dash-topbar">
+            <div class="topbar-left">
+                <div class="topbar-avatar" id="topbar-avatar">S</div>
+                <div class="topbar-info">
+                    <div class="topbar-name" id="topbar-name">Student</div>
+                    <div class="topbar-role">🎓 Student</div>
+                </div>
+            </div>
+            <button class="topbar-logout" onclick="studentLogout()">Logout</button>
+        </div>
+
+        <!-- Dashboard Header -->
+        <div class="dash-header">
+            <div class="dash-header-content">
+                <div class="dash-greeting-row">
+                    <div class="dash-avatar" id="dash-avatar">S</div>
+                    <div class="dash-greeting-text">
+                        <div class="dash-greeting" id="dash-greeting">Good Morning ☀️</div>
+                        <div class="dash-name-row">
+                            <span id="dash-student-name">Student</span> 👋
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dash-badges">
+                    <div class="dash-badge badge-class">
+                        🏫 <span id="dash-class-name">Class 11</span>
+                    </div>
+                    <div class="dash-badge badge-stream">
+                        📋 <span id="dash-stream-name">Science Stream</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dash-header-wave">
+                <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                    <path d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z" fill="#f0f2f5"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Stats Row -->
+        <div class="dash-stats">
+            <div class="dash-stat-card">
+                <span class="dash-stat-num" id="stat-subjects">0</span>
+                <span class="dash-stat-label">Subjects</span>
+            </div>
+            <div class="dash-stat-card">
+                <span class="dash-stat-num" id="stat-chapters">0</span>
+                <span class="dash-stat-label">Chapters</span>
+            </div>
+            <div class="dash-stat-card">
+                <span class="dash-stat-num" id="stat-total-videos">0</span>
+                <span class="dash-stat-label">Videos</span>
+            </div>
+            <div class="dash-stat-card">
+                <span class="dash-stat-num" id="stat-total-notes">0</span>
+                <span class="dash-stat-label">Notes</span>
+            </div>
+        </div>
+
+        <!-- My Subjects -->
+        <div class="section-heading">
+            <h2>📚 My Subjects</h2>
+            <span id="subject-count-label">0 subjects</span>
+        </div>
+
+        <div class="subjects-grid" id="subjects-grid">
+            <!-- Subject cards rendered by JS -->
+        </div>
+
+        <!-- Quick Actions -->
+        <div class="section-heading">
+            <h2>⚡ Quick Access</h2>
+        </div>
+
+        <div class="quick-actions">
+            <a href="livestreams.html" class="quick-action-btn">
+                <span class="quick-action-icon">🔴</span>
+                <span class="quick-action-label">Live Class</span>
+            </a>
+            <a href="announcements.html" class="quick-action-btn">
+                <span class="quick-action-icon">📢</span>
+                <span class="quick-action-label">Updates</span>
+            </a>
+            <a href="study-material.html" class="quick-action-btn">
+                <span class="quick-action-icon">📄</span>
+                <span class="quick-action-label">All Notes</span>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="dash-footer">
+            <p>Shiksha With Sagar © 2025 · Made with ❤️ by Sagar Sir</p>
+        </div>
+
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 2: CHAPTERS LIST (for a subject)
+         ══════════════════════════════════════════════ -->
+    <div class="view hidden" id="view-chapters">
+
+        <div class="chapters-header" id="chapters-header" style="background: linear-gradient(145deg, #4361ee, #2d3cb5)">
+            <button class="chapters-back-btn" onclick="backToDashboard()">← Back to Dashboard</button>
+            <div class="chapters-subject-row">
+                <div class="chapters-icon-big" id="chapters-subject-icon">⚛️</div>
+                <div class="chapters-subject-info">
+                    <h2 id="chapters-subject-name">Physics</h2>
+                    <p id="chapters-subject-count">8 Chapters</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chapters-list" id="chapters-list">
+            <!-- Chapter cards rendered by JS -->
+        </div>
+
+    </div>
+
+
+    <!-- ══════════════════════════════════════════════
+         VIEW 3: CHAPTER DETAIL (videos, notes, quiz)
+         ══════════════════════════════════════════════ -->
+    <div class="view hidden" id="view-chapter-detail">
+
+        <div class="detail-header" id="detail-header" style="background: linear-gradient(145deg, #4361ee, #2d3cb5)">
+            <button class="chapters-back-btn" onclick="backToChapters()">← Back to Chapters</button>
+            <div class="detail-title-row">
+                <div class="detail-icon-box" id="detail-subject-icon">⚛️</div>
+                <div class="detail-title-info">
+                    <h2 id="detail-chapter-name">Chapter Name</h2>
+                    <p id="detail-subject-name">Physics</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="chapter-content-area" id="chapter-content-area">
+            <!-- Content rendered by JS -->
+        </div>
+
+    </div>
+
+
+    <script src="./js/student-dashboard.js"></script>
+    <script>
+        initStudentDashboard();
     </script>
 </body>
 </html>
