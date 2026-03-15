@@ -13,7 +13,7 @@
    You can change these settings:                       */
 
 var SPLASH_DURATION   = 5000;           // Total splash time in ms (3000 = 3 seconds)
-var REDIRECT_PAGE     = 'SHIKSHA-WITH-SAGAR/index.html';   // Page to go to after splash
+var REDIRECT_PAGE     = 'shiksha-with-sagar/index.html';   // Page to go to after splash
 var PARTICLE_COUNT    = 20;             // Number of floating particles
 
 
