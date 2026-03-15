@@ -399,7 +399,7 @@ var STUDENT_ASSIGNMENTS = {
     'student@sws.com': {
         classId: 'class-11',
         streamId: 'science-11',
-        subjects: ['physics-11', 'chemistry-11', 'mathematics-11', 'biology-11']
+        subjects: ['physics-11', 'chemistry-11', 'mathematics-11']
     },
 
     'rahul@sws.com': {
