@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="0; url=splash.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#1a1a6e">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -109,6 +110,13 @@
     <script src="./script.js"></script>
     <script>
         initHomePage();
+    </script>
+        <!-- Redirect fallback -->
+    <script>
+        // Only redirect to splash if coming fresh (not from splash)
+        if (!sessionStorage.getItem('sws_splash_done')) {
+            window.location.href = 'splash.html';
+        }
     </script>
 </body>
 </html>

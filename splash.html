@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a0a3e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Shiksha With Sagar</title>
+
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/splash.css">
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════════════
+         SPLASH SCREEN CONTAINER
+         ══════════════════════════════════════════════ -->
+    <div class="splash-screen" id="splash-screen">
+
+        <!-- Background animated particles -->
+        <div class="particles" id="particles"></div>
+
+        <!-- Glowing rings behind the image -->
+        <div class="glow-rings">
+            <div class="ring ring-1"></div>
+            <div class="ring ring-2"></div>
+            <div class="ring ring-3"></div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="splash-content" id="splash-content">
+
+            <!-- Teacher Image Section -->
+            <div class="teacher-section">
+                <div class="image-frame" id="image-frame">
+                    <div class="image-border"></div>
+                    <div class="teacher-image-wrapper">
+                        <!-- ═══════════════════════════════════════════
+                             OPTION A: SVG ILLUSTRATION (Default)
+                             This is a built-in teacher illustration.
+                             
+                             OPTION B: YOUR OWN PHOTO
+                             To use your real photo, replace everything
+                             inside this div with:
+                             <img src="./icons/teacher-photo.png" alt="Sagar Sir">
+                             ═══════════════════════════════════════════ -->
+                        <svg class="teacher-svg" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Background circle -->
+                            <circle cx="100" cy="100" r="98" fill="url(#bgGrad)" stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+                            
+                            <!-- Gradients -->
+                            <defs>
+                                <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#1a1a6e"/>
+                                    <stop offset="100%" style="stop-color:#2d1b69"/>
+                                </linearGradient>
+                                <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f4c089"/>
+                                    <stop offset="100%" style="stop-color:#e8a86d"/>
+                                </linearGradient>
+                                <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#4361ee"/>
+                                    <stop offset="100%" style="stop-color:#3a0ca3"/>
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Body / Shirt -->
+                            <path d="M50,185 Q50,145 75,135 L100,130 L125,135 Q150,145 150,185" fill="url(#shirtGrad)"/>
+                            <path d="M65,185 Q65,155 80,148 L100,142 L120,148 Q135,155 135,185" fill="#3651d4" opacity="0.5"/>
+                            
+                            <!-- Collar -->
+                            <path d="M88,132 L100,142 L112,132" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                            
+                            <!-- Neck -->
+                            <rect x="90" y="115" width="20" height="20" rx="4" fill="url(#skinGrad)"/>
+                            
+                            <!-- Head -->
+                            <ellipse cx="100" cy="88" rx="35" ry="38" fill="url(#skinGrad)"/>
+                            
+                            <!-- Hair -->
+                            <path d="M65,80 Q65,50 100,48 Q135,50 135,80 Q130,62 100,60 Q70,62 65,80" fill="#1a1a2e"/>
+                            <path d="M63,85 Q60,70 68,60" fill="#1a1a2e" stroke="#1a1a2e" stroke-width="3"/>
+                            <path d="M137,85 Q140,70 132,60" fill="#1a1a2e" stroke="#1a1a2e" stroke-width="3"/>
+                            
+                            <!-- Eyebrows -->
+                            <path d="M80,78 Q87,74 94,78" fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M106,78 Q113,74 120,78" fill="none" stroke="#1a1a2e" stroke-width="2.5" stroke-linecap="round"/>
+                            
+                            <!-- Eyes -->
+                            <ellipse cx="87" cy="85" rx="5" ry="5.5" fill="#1a1a2e"/>
+                            <ellipse cx="113" cy="85" rx="5" ry="5.5" fill="#1a1a2e"/>
+                            <circle cx="85.5" cy="83.5" r="1.8" fill="#fff"/>
+                            <circle cx="111.5" cy="83.5" r="1.8" fill="#fff"/>
+                            
+                            <!-- Nose -->
+                            <path d="M97,88 Q100,96 103,88" fill="none" stroke="#d4956a" stroke-width="1.5" stroke-linecap="round"/>
+                            
+                            <!-- Smile -->
+                            <path d="M85,100 Q100,114 115,100" fill="none" stroke="#c97a50" stroke-width="2.5" stroke-linecap="round"/>
+                            <path d="M88,100 Q100,110 112,100" fill="#fff" opacity="0.9"/>
+                            
+                            <!-- Cheek blush -->
+                            <circle cx="74" cy="96" r="6" fill="#e8866a" opacity="0.3"/>
+                            <circle cx="126" cy="96" r="6" fill="#e8866a" opacity="0.3"/>
+                            
+                            <!-- Glasses (optional scholarly look) -->
+                            <circle cx="87" cy="85" r="12" fill="none" stroke="#ffd700" stroke-width="1.8" opacity="0.6"/>
+                            <circle cx="113" cy="85" r="12" fill="none" stroke="#ffd700" stroke-width="1.8" opacity="0.6"/>
+                            <path d="M99,85 L101,85" stroke="#ffd700" stroke-width="1.5" opacity="0.6"/>
+                            <path d="M75,83 L65,80" stroke="#ffd700" stroke-width="1.5" opacity="0.6"/>
+                            <path d="M125,83 L135,80" stroke="#ffd700" stroke-width="1.5" opacity="0.6"/>
+                            
+                            <!-- RIGHT HAND - Thumbs Up -->
+                            <g class="thumbs-up-hand">
+                                <!-- Arm -->
+                                <path d="M150,155 Q165,140 162,120" fill="none" stroke="url(#skinGrad)" stroke-width="12" stroke-linecap="round"/>
+                                
+                                <!-- Fist -->
+                                <rect x="152" y="100" width="22" height="18" rx="6" fill="url(#skinGrad)" transform="rotate(-5, 163, 109)"/>
+                                
+                                <!-- Thumb pointing up -->
+                                <rect x="158" y="80" width="10" height="24" rx="5" fill="url(#skinGrad)" transform="rotate(-5, 163, 92)"/>
+                                
+                                <!-- Finger lines on fist -->
+                                <path d="M155,105 L171,104" fill="none" stroke="#d4956a" stroke-width="0.8" opacity="0.5"/>
+                                <path d="M155,109 L171,108" fill="none" stroke="#d4956a" stroke-width="0.8" opacity="0.5"/>
+                                <path d="M155,113 L171,112" fill="none" stroke="#d4956a" stroke-width="0.8" opacity="0.5"/>
+                            </g>
+                            
+                            <!-- Sparkles around thumb -->
+                            <g class="sparkles">
+                                <text x="178" y="90" font-size="12" class="sparkle-1">✨</text>
+                                <text x="145" y="78" font-size="10" class="sparkle-2">⭐</text>
+                                <text x="175" y="110" font-size="8" class="sparkle-3">✨</text>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Verified badge -->
+                    <div class="verified-badge">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                            <circle cx="12" cy="12" r="11" fill="#06d6a0"/>
+                            <path d="M8 12.5L11 15.5L16.5 9" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Teacher name & thumbs-up label -->
+                <div class="teacher-name" id="teacher-name">
+                    <span class="wave-emoji">👋</span> Sagar Sir
+                </div>
+            </div>
+
+            <!-- App Name -->
+            <div class="app-name-section" id="app-name">
+                <div class="app-icon-text">📖</div>
+                <h1 class="app-title">
+                    <span class="title-line-1">Shiksha</span>
+                    <span class="title-line-2">With Sagar</span>
+                </h1>
+                <p class="app-tagline" id="tagline">Your Complete Learning Companion</p>
+            </div>
+
+            <!-- Loading Section -->
+            <div class="loading-section" id="loading-section">
+                <div class="loading-bar-container">
+                    <div class="loading-bar" id="loading-bar"></div>
+                </div>
+                <p class="loading-text" id="loading-text">Preparing your lessons...</p>
+            </div>
+
+        </div>
+
+        <!-- Bottom branding -->
+        <div class="splash-footer" id="splash-footer">
+            <p>Made with ❤️ for students</p>
+            <p class="version-text">Version 2.0</p>
+        </div>
+
+    </div>
+
+    <script src="./js/splash.js"></script>
+</body>
+</html>

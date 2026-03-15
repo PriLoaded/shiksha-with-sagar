@@ -1,0 +1,520 @@
+/* =============================================
+   SHIKSHA WITH SAGAR — SPLASH SCREEN
+   Professional Loading Screen
+   ============================================= */
+
+/* ─── RESET ──────────────────────────────────────── */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ─── ROOT VARIABLES ─────────────────────────────── */
+:root {
+    --splash-primary: #1a1a6e;
+    --splash-dark: #0a0a3e;
+    --splash-accent: #ff6b35;
+    --splash-accent-light: #ff8c5e;
+    --splash-gold: #ffd700;
+    --splash-success: #06d6a0;
+    --splash-white: #ffffff;
+    --splash-text: rgba(255, 255, 255, 0.85);
+    --splash-text-dim: rgba(255, 255, 255, 0.5);
+}
+
+/* ─── SPLASH SCREEN CONTAINER ────────────────────── */
+.splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(165deg,
+        #0a0a3e 0%,
+        #12124f 25%,
+        #1a1a6e 50%,
+        #15103d 75%,
+        #0d0830 100%
+    );
+    overflow: hidden;
+    z-index: 99999;
+    transition: opacity 0.7s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.splash-screen.fade-out {
+    opacity: 0;
+    transform: scale(1.08);
+}
+
+/* ─── ANIMATED BACKGROUND PARTICLES ──────────────── */
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0;
+    animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+    0% {
+        opacity: 0;
+        transform: translateY(100vh) scale(0);
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-10vh) scale(1);
+    }
+}
+
+/* ─── GLOWING RINGS ──────────────────────────────── */
+.glow-rings {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    z-index: 2;
+}
+
+.ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.ring-1 {
+    width: 250px;
+    height: 250px;
+    border-color: rgba(255, 107, 53, 0.06);
+    animation: ringPulse 3s ease-in-out infinite;
+}
+
+.ring-2 {
+    width: 340px;
+    height: 340px;
+    border-color: rgba(74, 74, 191, 0.05);
+    animation: ringPulse 3s ease-in-out infinite 0.5s;
+}
+
+.ring-3 {
+    width: 430px;
+    height: 430px;
+    border-color: rgba(255, 215, 0, 0.03);
+    animation: ringPulse 3s ease-in-out infinite 1s;
+}
+
+@keyframes ringPulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.08);
+        opacity: 1;
+    }
+}
+
+/* ─── MAIN SPLASH CONTENT ────────────────────────── */
+.splash-content {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 20px;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* ─── TEACHER IMAGE SECTION ──────────────────────── */
+.teacher-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.image-frame {
+    position: relative;
+    width: 140px;
+    height: 140px;
+    opacity: 0;
+    transform: scale(0.3) translateY(40px);
+    animation: imageReveal 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards;
+}
+
+@keyframes imageReveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translateY(40px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.image-border {
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: conic-gradient(
+        from 0deg,
+        var(--splash-accent),
+        var(--splash-gold),
+        var(--splash-success),
+        var(--splash-accent-light),
+        var(--splash-accent)
+    );
+    animation: borderSpin 4s linear infinite;
+    z-index: 1;
+}
+
+@keyframes borderSpin {
+    to { transform: rotate(360deg); }
+}
+
+.teacher-image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    z-index: 2;
+    background: linear-gradient(145deg, var(--splash-primary), var(--splash-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow:
+        0 0 40px rgba(255, 107, 53, 0.15),
+        inset 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.teacher-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.teacher-svg {
+    width: 130px;
+    height: 130px;
+}
+
+/* SVG Sparkle Animations */
+.sparkle-1 {
+    animation: sparkleAnim 1.5s ease-in-out infinite;
+}
+.sparkle-2 {
+    animation: sparkleAnim 1.5s ease-in-out infinite 0.3s;
+}
+.sparkle-3 {
+    animation: sparkleAnim 1.5s ease-in-out infinite 0.6s;
+}
+
+@keyframes sparkleAnim {
+    0%, 100% {
+        opacity: 0.3;
+        transform: scale(0.8);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.3);
+    }
+}
+
+/* Thumbs up subtle animation */
+.thumbs-up-hand {
+    animation: thumbsUp 2s ease-in-out infinite;
+    transform-origin: 155px 150px;
+}
+
+@keyframes thumbsUp {
+    0%, 100% { transform: rotate(0deg); }
+    25%      { transform: rotate(-3deg); }
+    75%      { transform: rotate(3deg); }
+}
+
+/* Verified badge */
+.verified-badge {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+    z-index: 5;
+    background: var(--splash-dark);
+    border-radius: 50%;
+    padding: 3px;
+    opacity: 0;
+    transform: scale(0);
+    animation: badgePop 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 1s forwards;
+}
+
+@keyframes badgePop {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Teacher name */
+.teacher-name {
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--splash-text);
+    letter-spacing: 0.5px;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeInUp 0.6s ease 0.8s forwards;
+}
+
+.wave-emoji {
+    display: inline-block;
+    animation: wave 2s ease-in-out infinite;
+    transform-origin: 70% 70%;
+}
+
+@keyframes wave {
+    0%, 100% { transform: rotate(0deg); }
+    10%      { transform: rotate(14deg); }
+    20%      { transform: rotate(-8deg); }
+    30%      { transform: rotate(14deg); }
+    40%      { transform: rotate(-4deg); }
+    50%      { transform: rotate(10deg); }
+    60%, 100%{ transform: rotate(0deg); }
+}
+
+/* ─── APP NAME SECTION ───────────────────────────── */
+.app-name-section {
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.7s ease 1s forwards;
+}
+
+.app-icon-text {
+    font-size: 32px;
+    margin-bottom: 8px;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3));
+}
+
+.app-title {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.15;
+    margin-bottom: 10px;
+}
+
+.title-line-1 {
+    display: block;
+    font-size: 38px;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg,
+        #ffffff 0%,
+        #ffd6c0 40%,
+        #ff6b35 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+}
+
+.title-line-2 {
+    display: block;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    background: linear-gradient(135deg,
+        rgba(255, 255, 255, 0.95) 0%,
+        rgba(255, 215, 0, 0.8) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.app-tagline {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: var(--splash-text-dim);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease 1.3s forwards;
+}
+
+/* ─── LOADING SECTION ────────────────────────────── */
+.loading-section {
+    width: 100%;
+    max-width: 260px;
+    opacity: 0;
+    animation: fadeInUp 0.6s ease 1.5s forwards;
+}
+
+/* Loading bar container */
+.loading-bar-container {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 16px;
+    position: relative;
+}
+
+.loading-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 4px;
+    background: linear-gradient(90deg,
+        var(--splash-accent),
+        var(--splash-gold),
+        var(--splash-accent-light)
+    );
+    background-size: 200% 100%;
+    animation: barShimmer 1.5s ease-in-out infinite;
+    transition: width 0.3s ease;
+    box-shadow: 0 0 12px rgba(255, 107, 53, 0.4);
+}
+
+@keyframes barShimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Loading text */
+.loading-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--splash-text-dim);
+    text-align: center;
+    letter-spacing: 0.5px;
+    min-height: 18px;
+    transition: opacity 0.3s ease;
+}
+
+/* ─── SPLASH FOOTER ──────────────────────────────── */
+.splash-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 24px 20px;
+    padding-bottom: max(24px, env(safe-area-inset-bottom, 24px));
+    z-index: 10;
+    opacity: 0;
+    animation: fadeInUp 0.5s ease 1.8s forwards;
+}
+
+.splash-footer p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.35);
+    margin-bottom: 4px;
+}
+
+.version-text {
+    font-size: 10px !important;
+    color: rgba(255, 255, 255, 0.2) !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* ─── SHARED ANIMATION ───────────────────────────── */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────── */
+
+/* Small phones */
+@media (max-height: 600px) {
+    .image-frame {
+        width: 110px;
+        height: 110px;
+    }
+    .teacher-svg {
+        width: 102px;
+        height: 102px;
+    }
+    .title-line-1 {
+        font-size: 30px;
+    }
+    .title-line-2 {
+        font-size: 24px;
+    }
+    .splash-content {
+        gap: 18px;
+    }
+    .glow-rings {
+        display: none;
+    }
+}
+
+/* Taller phones */
+@media (min-height: 750px) {
+    .splash-content {
+        gap: 34px;
+    }
+}
+
+/* Desktop */
+@media (min-width: 600px) {
+    .image-frame {
+        width: 160px;
+        height: 160px;
+    }
+    .teacher-svg {
+        width: 150px;
+        height: 150px;
+    }
+    .title-line-1 {
+        font-size: 44px;
+    }
+    .title-line-2 {
+        font-size: 34px;
+    }
+}
+
+/* Safe area for notched phones */
+@supports (padding-top: env(safe-area-inset-top)) {
+    .splash-content {
+        padding-top: env(safe-area-inset-top);
+    }
+}
