@@ -1,19 +1,23 @@
-var CACHE_NAME = 'sws-v3';   // ← Changed from v2 to v3
+var CACHE_NAME = 'sws-v5';
 
 var FILES = [
     './',
-    './splash.html',
     './index.html',
+    './splash.html',
+    './login.html',
+    './student-dashboard.html',
     './videos.html',
     './livestreams.html',
     './study-material.html',
     './announcements.html',
-    './login.html',
     './admin.html',
+    './admin/admin-dashboard.html',
     './style.css',
     './css/splash.css',
+    './css/login.css',
     './script.js',
     './js/splash.js',
+    './js/login.js',
     './admin.js',
     './manifest.json',
     './icons/icon-192x192.png',
@@ -43,12 +47,13 @@ self.addEventListener('activate', function(e) {
 });
 
 self.addEventListener('fetch', function(e) {
-    if (e.request.url.indexOf('script.google.com') !== -1) {
-        return;
-    }
+    if (e.request.url.indexOf('script.google.com') !== -1) return;
+    if (e.request.url.indexOf('fonts.googleapis.com') !== -1) return;
+    if (e.request.url.indexOf('fonts.gstatic.com') !== -1) return;
+
     e.respondWith(
         fetch(e.request)
-            .then(function(response) { return response; })
+            .then(function(r) { return r; })
             .catch(function() { return caches.match(e.request); })
     );
 });

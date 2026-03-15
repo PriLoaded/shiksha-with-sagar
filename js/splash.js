@@ -1,10 +1,10 @@
 /* =====================================================
    SHIKSHA WITH SAGAR — SPLASH SCREEN LOGIC
-   Redirects to index.html (Home Page) after loading
+   Redirects to login.html after loading
    ===================================================== */
 
 var SPLASH_DURATION   = 6000;
-var REDIRECT_PAGE     = 'index.html';    // ← Goes to home page now
+var REDIRECT_PAGE     = 'login.html';    // ← Now goes to login
 var PARTICLE_COUNT    = 20;
 
 var loadingMessages = [
@@ -80,7 +80,6 @@ function animateLoadingBar() {
         var progress = Math.min((elapsed / totalTime) * 100, 100);
         var easedProgress = 100 * (1 - Math.pow(1 - progress / 100, 3));
         bar.style.width = easedProgress + '%';
-
         if (progress < 100) {
             requestAnimationFrame(updateBar);
         }
@@ -92,29 +91,42 @@ function animateLoadingBar() {
 }
 
 
-/* ─── REDIRECT TO HOME PAGE ──────────────────────── */
+/* ─── SMART REDIRECT ─────────────────────────────── */
 function startRedirectTimer() {
     setTimeout(function () {
-
-        // Mark splash as done so index.html doesn't loop back
         sessionStorage.setItem('sws_splash_done', 'true');
 
-        // Fade out animation
         var splash = document.getElementById('splash-screen');
         if (splash) {
             splash.classList.add('fade-out');
         }
 
-        // Redirect after fade finishes
         setTimeout(function () {
-            window.location.replace(REDIRECT_PAGE);
+            // Check if user is already logged in
+            var destination = REDIRECT_PAGE;
+
+            try {
+                var saved = localStorage.getItem('sws_user');
+                if (saved) {
+                    var user = JSON.parse(saved);
+                    if (user && user.role === 'student') {
+                        destination = 'student-dashboard.html';
+                    } else if (user && user.role === 'admin') {
+                        destination = 'admin/admin-dashboard.html';
+                    }
+                }
+            } catch (e) {
+                // If parsing fails, go to login
+            }
+
+            window.location.replace(destination);
         }, 700);
 
     }, SPLASH_DURATION);
 }
 
 
-/* ─── INITIALIZE ─────────────────────────────────── */
+/* ─── INIT ───────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded', function () {
     createParticles();
     animateLoadingBar();

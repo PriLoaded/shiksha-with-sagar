@@ -2,137 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#1a1a6e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Shiksha With Sagar">
-    <meta name="description" content="Shiksha With Sagar — Watch lectures, join live classes, download notes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0a3e">
     <title>Shiksha With Sagar</title>
-
     <link rel="manifest" href="./manifest.json">
-    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
     <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
-    <link rel="stylesheet" href="./style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- ══════════════════════════════════════════════
-         SPLASH REDIRECT LOGIC
-         If splash has NOT been shown yet this session,
-         go to splash.html first. Otherwise show home.
-         ══════════════════════════════════════════════ -->
     <script>
+        // index.html is the PWA entry point
+        // It always goes to splash first
         if (!sessionStorage.getItem('sws_splash_done')) {
             window.location.replace('splash.html');
+        } else {
+            // If splash already shown, check login status
+            try {
+                var user = JSON.parse(localStorage.getItem('sws_user'));
+                if (user && user.role === 'student') {
+                    window.location.replace('student-dashboard.html');
+                } else if (user && user.role === 'admin') {
+                    window.location.replace('admin/admin-dashboard.html');
+                } else {
+                    window.location.replace('login.html');
+                }
+            } catch(e) {
+                window.location.replace('login.html');
+            }
         }
     </script>
 </head>
 <body>
-
-    <!-- ══════════════════════════════════════════════
-         INSTALL APP BANNER
-         ══════════════════════════════════════════════ -->
-    <div id="install-banner" class="install-banner hidden">
-        <p>📲 Install <strong>Shiksha With Sagar</strong> app!</p>
-        <div class="install-buttons">
-            <button id="install-btn" onclick="installApp()">Install</button>
-            <button onclick="document.getElementById('install-banner').classList.add('hidden')">Later</button>
-        </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════════
-         HOME PAGE HEADER
-         ══════════════════════════════════════════════ -->
-    <div class="home-header">
-        <div class="header-content">
-            <div class="header-greeting" id="greeting"></div>
-            <div class="brand-logo">📖</div>
-            <h1>Shiksha With Sagar</h1>
-            <p class="header-tagline">Your complete learning companion</p>
-        </div>
-        <div class="header-wave">
-            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-                <path d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z" fill="#f0f2f5"/>
-            </svg>
-        </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════════
-         STATS BAR
-         ══════════════════════════════════════════════ -->
-    <div class="home-stats" id="home-stats">
-        <div class="stat-item">
-            <span class="stat-number" id="stat-videos">—</span>
-            <span class="stat-label">Lectures</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-            <span class="stat-number" id="stat-notes">—</span>
-            <span class="stat-label">Notes</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-            <span class="stat-number" id="stat-updates">—</span>
-            <span class="stat-label">Updates</span>
-        </div>
-    </div>
-
-    <!-- ══════════════════════════════════════════════
-         MAIN 4 NAVIGATION CARDS
-         ══════════════════════════════════════════════ -->
-    <div class="home-cards">
-
-        <a href="videos.html" class="card card-lectures">
-            <div class="card-icon">🎥</div>
-            <div class="card-info">
-                <h3>Recorded Lectures</h3>
-                <p>Watch video lessons by subject</p>
-            </div>
-            <div class="card-arrow">›</div>
-        </a>
-
-        <a href="livestreams.html" class="card card-live">
-            <div class="card-icon">🔴</div>
-            <div class="card-info">
-                <h3>Live Classes</h3>
-                <p id="live-home-status">Join live sessions</p>
-            </div>
-            <div class="card-arrow">›</div>
-        </a>
-
-        <a href="study-material.html" class="card card-materials">
-            <div class="card-icon">📚</div>
-            <div class="card-info">
-                <h3>Study Material</h3>
-                <p>Download notes &amp; PDFs</p>
-            </div>
-            <div class="card-arrow">›</div>
-        </a>
-
-        <a href="announcements.html" class="card card-announcements">
-            <div class="card-icon">📢</div>
-            <div class="card-info">
-                <h3>Announcements</h3>
-                <p>Important updates &amp; notices</p>
-            </div>
-            <div class="card-arrow">›</div>
-        </a>
-
-    </div>
-
-    <!-- ══════════════════════════════════════════════
-         FOOTER
-         ══════════════════════════════════════════════ -->
-    <div class="home-footer">
-        <p>Made with ❤️ by <strong>Sagar Sir</strong></p>
-        <a href="login.html" class="admin-link">🔒 Teacher Login</a>
-    </div>
-
-    <script src="./script.js"></script>
-    <script>
-        initHomePage();
-    </script>
+    <p style="text-align:center;padding:40px;font-family:sans-serif;color:#888">
+        Redirecting...
+    </p>
 </body>
 </html>

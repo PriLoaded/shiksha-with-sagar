@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a6e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Student Dashboard — Shiksha With Sagar</title>
+
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        .logout-bar {
+            background: var(--card, #fff);
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #4361ee, #3a0ca3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 14px;
+            font-weight: 700;
+        }
+        .user-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: #1a1a2e;
+        }
+        .user-role {
+            font-size: 11px;
+            color: #8b8ba8;
+        }
+        .logout-link {
+            font-size: 13px;
+            color: #ef476f;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: #fce8ef;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+        }
+    </style>
+
+    <script>
+        // Auth guard — redirect to login if not logged in
+        var user = null;
+        try {
+            user = JSON.parse(localStorage.getItem('sws_user'));
+        } catch(e) {}
+        if (!user || user.role !== 'student') {
+            window.location.replace('login.html');
+        }
+    </script>
+</head>
+<body>
+
+    <!-- User Bar -->
+    <div class="logout-bar">
+        <div class="user-info">
+            <div class="user-avatar" id="user-avatar">S</div>
+            <div>
+                <div class="user-name" id="user-name">Student</div>
+                <div class="user-role">🎓 Student Account</div>
+            </div>
+        </div>
+        <button class="logout-link" onclick="logout()">Logout</button>
+    </div>
+
+    <!-- HOME HEADER -->
+    <div class="home-header">
+        <div class="header-content">
+            <div class="header-greeting" id="greeting"></div>
+            <div class="brand-logo">📖</div>
+            <h1>Shiksha With Sagar</h1>
+            <p class="header-tagline">Your complete learning companion</p>
+        </div>
+        <div class="header-wave">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <path d="M0,64 C360,120 720,0 1080,64 C1260,96 1380,80 1440,64 L1440,120 L0,120 Z" fill="#f0f2f5"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="home-stats">
+        <div class="stat-item">
+            <span class="stat-number" id="stat-videos">—</span>
+            <span class="stat-label">Lectures</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <span class="stat-number" id="stat-notes">—</span>
+            <span class="stat-label">Notes</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-item">
+            <span class="stat-number" id="stat-updates">—</span>
+            <span class="stat-label">Updates</span>
+        </div>
+    </div>
+
+    <!-- NAV CARDS -->
+    <div class="home-cards">
+        <a href="videos.html" class="card card-lectures">
+            <div class="card-icon">🎥</div>
+            <div class="card-info">
+                <h3>Recorded Lectures</h3>
+                <p>Watch video lessons by subject</p>
+            </div>
+            <div class="card-arrow">›</div>
+        </a>
+
+        <a href="livestreams.html" class="card card-live">
+            <div class="card-icon">🔴</div>
+            <div class="card-info">
+                <h3>Live Classes</h3>
+                <p id="live-home-status">Join live sessions</p>
+            </div>
+            <div class="card-arrow">›</div>
+        </a>
+
+        <a href="study-material.html" class="card card-materials">
+            <div class="card-icon">📚</div>
+            <div class="card-info">
+                <h3>Study Material</h3>
+                <p>Download notes &amp; PDFs</p>
+            </div>
+            <div class="card-arrow">›</div>
+        </a>
+
+        <a href="announcements.html" class="card card-announcements">
+            <div class="card-icon">📢</div>
+            <div class="card-info">
+                <h3>Announcements</h3>
+                <p>Important updates &amp; notices</p>
+            </div>
+            <div class="card-arrow">›</div>
+        </a>
+    </div>
+
+    <div class="home-footer">
+        <p>Made with ❤️ by <strong>Sagar Sir</strong></p>
+    </div>
+
+    <script src="./script.js"></script>
+    <script>
+        // Set user info
+        var u = null;
+        try { u = JSON.parse(localStorage.getItem('sws_user')); } catch(e){}
+        if (u) {
+            document.getElementById('user-name').textContent = u.name || 'Student';
+            document.getElementById('user-avatar').textContent = (u.name || 'S').charAt(0).toUpperCase();
+        }
+
+        // Greeting
+        var h = new Date().getHours();
+        var greet = '';
+        if (h >= 5 && h < 12)       greet = 'Good Morning ☀️';
+        else if (h >= 12 && h < 17) greet = 'Good Afternoon 🌤️';
+        else if (h >= 17 && h < 21) greet = 'Good Evening 🌙';
+        else                         greet = 'Happy Studying 🌟';
+        document.getElementById('greeting').textContent = greet + (u ? ', ' + u.name.split(' ')[0] : '');
+
+        function logout() {
+            localStorage.removeItem('sws_user');
+            sessionStorage.removeItem('sws_user');
+            sessionStorage.removeItem('sws_splash_done');
+            window.location.replace('login.html');
+        }
+
+        // Init home stats
+        if (typeof initHomePage === 'function') {
+            initHomePage();
+        }
+    </script>
+</body>
+</html>

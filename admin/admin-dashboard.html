@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a6e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Admin Dashboard — Shiksha With Sagar</title>
+
+    <link rel="icon" type="image/png" href="../icons/icon-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f0f2f5;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+        .admin-topbar {
+            background: linear-gradient(145deg, #1a1a6e, #0d0d45);
+            padding: 18px 20px;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .admin-topbar h1 {
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .admin-topbar p {
+            font-size: 12px;
+            opacity: 0.65;
+            margin-top: 2px;
+        }
+        .logout-btn {
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 22px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .dashboard-grid {
+            padding: 24px 18px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .dash-card {
+            background: #fff;
+            border-radius: 18px;
+            padding: 24px 18px;
+            text-align: center;
+            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+            text-decoration: none;
+            color: #1a1a2e;
+            transition: transform 0.2s;
+        }
+        .dash-card:active { transform: scale(0.96); }
+        .dash-icon { font-size: 36px; margin-bottom: 10px; }
+        .dash-label { font-size: 13px; font-weight: 600; }
+        .dash-card.full-width {
+            grid-column: 1 / -1;
+        }
+        .welcome-card {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, #1a1a6e, #0d0d45);
+            color: #fff;
+            padding: 28px 22px;
+            border-radius: 20px;
+            margin-bottom: 4px;
+        }
+        .welcome-card h2 {
+            font-size: 20px;
+            margin-bottom: 6px;
+        }
+        .welcome-card p {
+            font-size: 13px;
+            opacity: 0.7;
+        }
+    </style>
+
+    <script>
+        var user = null;
+        try { user = JSON.parse(localStorage.getItem('sws_user')); } catch(e){}
+        if (!user || user.role !== 'admin') {
+            window.location.replace('../login.html');
+        }
+    </script>
+</head>
+<body>
+
+    <div class="admin-topbar">
+        <div>
+            <h1>⚙️ Admin Panel</h1>
+            <p>Shiksha With Sagar</p>
+        </div>
+        <button class="logout-btn" onclick="logout()">Logout ↗</button>
+    </div>
+
+    <div class="dashboard-grid">
+
+        <div class="welcome-card">
+            <h2 id="admin-greeting">Welcome, Sagar Sir! 👋</h2>
+            <p>Manage your lectures, notes, and announcements from here.</p>
+        </div>
+
+        <a href="../admin.html" class="dash-card">
+            <div class="dash-icon">🎥</div>
+            <div class="dash-label">Manage Videos</div>
+        </a>
+
+        <a href="../admin.html" class="dash-card">
+            <div class="dash-icon">🔴</div>
+            <div class="dash-label">Live Streams</div>
+        </a>
+
+        <a href="../admin.html" class="dash-card">
+            <div class="dash-icon">📚</div>
+            <div class="dash-label">Study Material</div>
+        </a>
+
+        <a href="../admin.html" class="dash-card">
+            <div class="dash-icon">📢</div>
+            <div class="dash-label">Announcements</div>
+        </a>
+
+        <a href="../student-dashboard.html" class="dash-card full-width" style="background:#e8f0fe">
+            <div class="dash-icon">👁️</div>
+            <div class="dash-label">View Student App</div>
+        </a>
+
+    </div>
+
+    <script>
+        var u = null;
+        try { u = JSON.parse(localStorage.getItem('sws_user')); } catch(e){}
+        if (u && u.name) {
+            document.getElementById('admin-greeting').textContent = 'Welcome, ' + u.name + '! 👋';
+        }
+
+        function logout() {
+            localStorage.removeItem('sws_user');
+            sessionStorage.removeItem('sws_user');
+            sessionStorage.removeItem('sws_admin');
+            sessionStorage.removeItem('sws_splash_done');
+            window.location.replace('../login.html');
+        }
+    </script>
+</body>
+</html>
