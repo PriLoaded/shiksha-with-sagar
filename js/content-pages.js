@@ -264,14 +264,59 @@ function renderVideosList(container, videos) {
         return;
     }
 
+    // Get subject and chapter from URL
+    var subjectId = getUrlParam('subject');
+    var chapterId = getUrlParam('chapter');
+
     var html = '';
     videos.forEach(function (v, i) {
         var vid = extractVideoId(v.videoId || '');
         var thumb = 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg';
-        var ytLink = 'https://www.youtube.com/watch?v=' + vid;
+
+        // Link to in-app player instead of YouTube
+        var playerLink = 'video-player.html?subject=' + subjectId +
+                         '&chapter=' + chapterId +
+                         '&video=' + v.id;
 
         html +=
-            '<a href="' + ytLink + '" target="_blank" rel="noopener" ' +
+            '<a href="' + playerLink + '" ' +
+            '   class="video-item" style="animation-delay:' + (i * 0.05) + 's">' +
+            '  <div class="video-thumb">' +
+            '    <img src="' + thumb + '" alt="' + (v.title || '') + '" loading="lazy">' +
+            '    <div class="video-play"><div class="play-circle">▶</div></div>' +
+            '    <div class="video-duration">' + (v.duration || '') + '</div>' +
+            '  </div>' +
+            '  <div class="video-details">' +
+            '    <h4 class="video-title">' + (v.title || 'Untitled Video') + '</h4>' +
+            '    <p class="video-meta">📅 ' + formatDate(v.date) + '</p>' +
+            '  </div>' +
+            '</a>';
+    });
+
+    container.innerHTML = html;
+}/* ─── RENDER VIDEOS ──────────────────────────── */
+function renderVideosList(container, videos) {
+    if (!videos || videos.length === 0) {
+        container.innerHTML = emptyState('🎬', 'No videos uploaded yet', 'Videos will appear here once Sagar Sir uploads them.');
+        return;
+    }
+
+    // Get subject and chapter from URL
+    var subjectId = getUrlParam('subject');
+    var chapterId = getUrlParam('chapter');
+
+    var html = '';
+    videos.forEach(function (v, i) {
+        var vid = extractVideoId(v.videoId || '');
+        var thumb = 'https://img.youtube.com/vi/' + vid + '/hqdefault.jpg';
+
+        // Link to in-app player instead of YouTube
+        var playerLink = 'video-player.html?subject=' + subjectId +
+                         '&chapter=' + chapterId +
+                         '&video=' + v.id;
+
+        html +=
+            '<a href="' + playerLink + '" ' +
             '   class="video-item" style="animation-delay:' + (i * 0.05) + 's">' +
             '  <div class="video-thumb">' +
             '    <img src="' + thumb + '" alt="' + (v.title || '') + '" loading="lazy">' +

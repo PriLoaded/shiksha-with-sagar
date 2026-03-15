@@ -1,4 +1,4 @@
-var CACHE_NAME = 'sws-v7';
+var CACHE_NAME = 'sws-v8';
 
 var FILES = [
     './',
@@ -8,6 +8,7 @@ var FILES = [
     './student-dashboard.html',
     './subject-page.html',
     './chapter-page.html',
+    './video-player.html',
     './videos.html',
     './livestreams.html',
     './study-material.html',
@@ -19,12 +20,14 @@ var FILES = [
     './css/login.css',
     './css/student-dashboard.css',
     './css/content-pages.css',
+    './css/video-player.css',
     './script.js',
     './js/splash.js',
     './js/login.js',
     './js/app-data.js',
     './js/student-dashboard.js',
     './js/content-pages.js',
+    './js/video-player.js',
     './admin.js',
     './manifest.json',
     './icons/icon-192x192.png',
@@ -57,6 +60,8 @@ self.addEventListener('fetch', function(e) {
     if (e.request.url.indexOf('script.google.com') !== -1) return;
     if (e.request.url.indexOf('fonts.googleapis.com') !== -1) return;
     if (e.request.url.indexOf('fonts.gstatic.com') !== -1) return;
+    if (e.request.url.indexOf('youtube.com') !== -1) return;
+    if (e.request.url.indexOf('img.youtube.com') !== -1) return;
 
     e.respondWith(
         fetch(e.request)

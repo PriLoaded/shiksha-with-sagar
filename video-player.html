@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>Video — Shiksha With Sagar</title>
+
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/video-player.css">
+
+    <!-- Auth Guard -->
+    <script>
+        try {
+            var u = JSON.parse(localStorage.getItem('sws_user'));
+            if (!u || u.role !== 'student') window.location.replace('login.html');
+        } catch(e) { window.location.replace('login.html'); }
+    </script>
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════════
+         TOP BAR
+         ══════════════════════════════════════════ -->
+    <div class="player-topbar" id="player-topbar">
+        <a href="#" id="back-btn" class="topbar-back">
+            <span class="back-arrow">←</span>
+            <span class="back-text">Back</span>
+        </a>
+        <div class="topbar-center">
+            <span class="topbar-subject-icon" id="topbar-icon">⚛️</span>
+            <span class="topbar-subject-name" id="topbar-subject">Physics</span>
+        </div>
+        <div class="topbar-spacer"></div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         VIDEO PLAYER SECTION
+         ══════════════════════════════════════════ -->
+    <div class="player-container" id="player-container">
+
+        <!-- YouTube Embedded Player -->
+        <div class="video-player-wrapper" id="video-wrapper">
+            <div class="player-loading" id="player-loading">
+                <div class="player-spinner"></div>
+                <p>Loading video...</p>
+            </div>
+            <iframe
+                id="youtube-player"
+                src=""
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+                allowfullscreen
+                loading="eager"
+            ></iframe>
+        </div>
+
+        <!-- Video Info Section -->
+        <div class="video-info-section" id="video-info">
+
+            <!-- Title and Meta -->
+            <div class="video-info-card">
+                <h1 class="player-video-title" id="video-title">Video Title</h1>
+                <div class="video-meta-row">
+                    <span class="meta-item" id="video-duration">
+                        <span class="meta-icon">⏱</span> --:--
+                    </span>
+                    <span class="meta-item" id="video-date">
+                        <span class="meta-icon">📅</span> --
+                    </span>
+                    <span class="meta-badge" id="video-subject-badge">Physics</span>
+                </div>
+            </div>
+
+            <!-- Chapter Info -->
+            <div class="chapter-info-bar" id="chapter-info-bar">
+                <div class="chapter-info-left">
+                    <span class="chapter-label">CHAPTER</span>
+                    <span class="chapter-name" id="chapter-name">Chapter Name</span>
+                </div>
+                <a href="#" id="view-all-videos-btn" class="view-all-btn">
+                    All Videos →
+                </a>
+            </div>
+
+            <!-- Related Notes Section -->
+            <div class="related-notes-section" id="notes-section">
+                <h3 class="section-label">📄 Chapter Notes &amp; PDFs</h3>
+                <div class="notes-list" id="notes-list">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+            <!-- Video Navigation (Prev / Next) -->
+            <div class="video-nav-section" id="video-nav">
+                <button class="nav-btn nav-prev" id="btn-prev" onclick="goToPrevVideo()">
+                    <span class="nav-arrow">←</span>
+                    <div class="nav-label">
+                        <span class="nav-small">Previous</span>
+                        <span class="nav-title" id="prev-title">—</span>
+                    </div>
+                </button>
+                <button class="nav-btn nav-next" id="btn-next" onclick="goToNextVideo()">
+                    <div class="nav-label">
+                        <span class="nav-small">Next</span>
+                        <span class="nav-title" id="next-title">—</span>
+                    </div>
+                    <span class="nav-arrow">→</span>
+                </button>
+            </div>
+
+            <!-- More Videos in this Chapter -->
+            <div class="more-videos-section" id="more-videos-section">
+                <h3 class="section-label">🎥 More Videos in this Chapter</h3>
+                <div class="more-videos-list" id="more-videos-list">
+                    <!-- Rendered by JS -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- ══════════════════════════════════════════
+         ERROR STATE (if video not found)
+         ══════════════════════════════════════════ -->
+    <div class="player-error hidden" id="player-error">
+        <div class="error-icon">😕</div>
+        <h3>Video Not Found</h3>
+        <p>This video may have been removed or the link is broken.</p>
+        <a href="student-dashboard.html" class="error-back-btn">← Back to Dashboard</a>
+    </div>
+
+
+    <script src="./js/app-data.js"></script>
+    <script src="./js/video-player.js"></script>
+    <script>
+        initVideoPlayer();
+    </script>
+</body>
+</html>
