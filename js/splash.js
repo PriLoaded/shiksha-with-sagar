@@ -3,7 +3,7 @@
    Redirects to index.html (Home Page) after loading
    ===================================================== */
 
-var SPLASH_DURATION   = 3000;
+var SPLASH_DURATION   = 6000;
 var REDIRECT_PAGE     = 'index.html';    // ← Goes to home page now
 var PARTICLE_COUNT    = 20;
 
