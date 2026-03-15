@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a6e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Chapter — Shiksha With Sagar</title>
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/content-pages.css">
+
+    <script>
+        try {
+            var u = JSON.parse(localStorage.getItem('sws_user'));
+            if (!u || u.role !== 'student') window.location.replace('login.html');
+        } catch(e) { window.location.replace('login.html'); }
+    </script>
+</head>
+<body id="page-body">
+
+    <!-- Header -->
+    <div class="content-header" id="chapter-header">
+        <a href="#" id="back-link" class="header-back">← Back to Subject</a>
+
+        <div class="header-main">
+            <div class="header-icon-box" id="ch-icon">⚛️</div>
+            <div class="header-info">
+                <h1 id="ch-name">Chapter Name</h1>
+                <p class="header-sub" id="ch-subject-name">Physics • Class 11</p>
+            </div>
+        </div>
+
+        <p class="header-desc" id="ch-description">
+            Chapter description goes here.
+        </p>
+    </div>
+
+    <!-- Stats -->
+    <div class="chapter-stats-row">
+        <div class="ch-stat-box">
+            <span class="ch-stat-num" id="ch-stat-videos">0</span>
+            <span class="ch-stat-label">Videos</span>
+        </div>
+        <div class="ch-stat-box">
+            <span class="ch-stat-num" id="ch-stat-live">0</span>
+            <span class="ch-stat-label">Live</span>
+        </div>
+        <div class="ch-stat-box">
+            <span class="ch-stat-num" id="ch-stat-notes">0</span>
+            <span class="ch-stat-label">Notes</span>
+        </div>
+    </div>
+
+    <!-- Tabs -->
+    <div class="tabs-bar">
+        <button class="content-tab active" data-tab="videos" onclick="switchTab('videos')">
+            <span class="tab-label">🎥 Videos</span>
+            <span class="tab-count" id="tab-videos-count">0</span>
+        </button>
+        <button class="content-tab" data-tab="live" onclick="switchTab('live')">
+            <span class="tab-label">🔴 Live</span>
+            <span class="tab-count" id="tab-live-count">0</span>
+            <span class="live-dot-indicator hidden" id="live-dot"></span>
+        </button>
+        <button class="content-tab" data-tab="notes" onclick="switchTab('notes')">
+            <span class="tab-label">📄 Notes</span>
+            <span class="tab-count" id="tab-notes-count">0</span>
+        </button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content-area" id="tab-content">
+        <!-- Rendered by JS based on active tab -->
+    </div>
+
+    <script src="./js/app-data.js"></script>
+    <script src="./js/content-pages.js"></script>
+    <script>initChapterPage();</script>
+</body>
+</html>

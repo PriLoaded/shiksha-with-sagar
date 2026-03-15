@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#1a1a6e">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>Subject — Shiksha With Sagar</title>
+    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/content-pages.css">
+
+    <script>
+        try {
+            var u = JSON.parse(localStorage.getItem('sws_user'));
+            if (!u || u.role !== 'student') window.location.replace('login.html');
+        } catch(e) { window.location.replace('login.html'); }
+    </script>
+</head>
+<body id="page-body">
+
+    <!-- Header -->
+    <div class="content-header" id="subject-header">
+        <a href="student-dashboard.html" class="header-back">← Dashboard</a>
+
+        <div class="header-main">
+            <div class="header-icon-box" id="subject-icon">⚛️</div>
+            <div class="header-info">
+                <h1 id="subject-name">Physics</h1>
+                <p class="header-sub" id="subject-class-name">Class 11 • Science Stream</p>
+            </div>
+        </div>
+
+        <p class="header-desc" id="subject-desc">
+            Explore the fundamental laws governing the universe.
+        </p>
+    </div>
+
+    <!-- Stats -->
+    <div class="subject-stats">
+        <div class="subject-stat-card">
+            <span class="subject-stat-num" id="total-chapters">0</span>
+            <span class="subject-stat-label">Chapters</span>
+        </div>
+        <div class="subject-stat-card">
+            <span class="subject-stat-num" id="total-videos">0</span>
+            <span class="subject-stat-label">Videos</span>
+        </div>
+        <div class="subject-stat-card">
+            <span class="subject-stat-num" id="total-notes">0</span>
+            <span class="subject-stat-label">Notes</span>
+        </div>
+    </div>
+
+    <!-- Chapters Label -->
+    <h3 class="section-label">📖 Chapters</h3>
+
+    <!-- Chapters List -->
+    <div class="chapters-container" id="chapters-container">
+        <!-- Rendered by JS -->
+    </div>
+
+    <script src="./js/app-data.js"></script>
+    <script src="./js/content-pages.js"></script>
+    <script>initSubjectPage();</script>
+</body>
+</html>

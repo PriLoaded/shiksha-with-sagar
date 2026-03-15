@@ -1,4 +1,4 @@
-var CACHE_NAME = 'sws-v6';
+var CACHE_NAME = 'sws-v7';
 
 var FILES = [
     './',
@@ -6,6 +6,8 @@ var FILES = [
     './splash.html',
     './login.html',
     './student-dashboard.html',
+    './subject-page.html',
+    './chapter-page.html',
     './videos.html',
     './livestreams.html',
     './study-material.html',
@@ -16,10 +18,13 @@ var FILES = [
     './css/splash.css',
     './css/login.css',
     './css/student-dashboard.css',
+    './css/content-pages.css',
     './script.js',
     './js/splash.js',
     './js/login.js',
+    './js/app-data.js',
     './js/student-dashboard.js',
+    './js/content-pages.js',
     './admin.js',
     './manifest.json',
     './icons/icon-192x192.png',
