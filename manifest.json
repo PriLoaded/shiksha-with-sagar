@@ -2,7 +2,7 @@
     "name": "Shiksha With Sagar — Learning App",
     "short_name": "Shiksha With Sagar",
     "description": "Watch lectures, join live classes, download notes — by Sagar Sir",
-    "start_url": "./splash.html",
+    "start_url": "./index.html",
     "scope": "./",
     "display": "standalone",
     "orientation": "portrait",

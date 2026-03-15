@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=splash.html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="theme-color" content="#1a1a6e">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -10,6 +9,7 @@
     <meta name="apple-mobile-web-app-title" content="Shiksha With Sagar">
     <meta name="description" content="Shiksha With Sagar — Watch lectures, join live classes, download notes">
     <title>Shiksha With Sagar</title>
+
     <link rel="manifest" href="./manifest.json">
     <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
     <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
@@ -17,10 +17,23 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- ══════════════════════════════════════════════
+         SPLASH REDIRECT LOGIC
+         If splash has NOT been shown yet this session,
+         go to splash.html first. Otherwise show home.
+         ══════════════════════════════════════════════ -->
+    <script>
+        if (!sessionStorage.getItem('sws_splash_done')) {
+            window.location.replace('splash.html');
+        }
+    </script>
 </head>
 <body>
 
-    <!-- Install Banner -->
+    <!-- ══════════════════════════════════════════════
+         INSTALL APP BANNER
+         ══════════════════════════════════════════════ -->
     <div id="install-banner" class="install-banner hidden">
         <p>📲 Install <strong>Shiksha With Sagar</strong> app!</p>
         <div class="install-buttons">
@@ -29,7 +42,9 @@
         </div>
     </div>
 
-    <!-- Home Page -->
+    <!-- ══════════════════════════════════════════════
+         HOME PAGE HEADER
+         ══════════════════════════════════════════════ -->
     <div class="home-header">
         <div class="header-content">
             <div class="header-greeting" id="greeting"></div>
@@ -44,7 +59,9 @@
         </div>
     </div>
 
-    <!-- Stats Bar -->
+    <!-- ══════════════════════════════════════════════
+         STATS BAR
+         ══════════════════════════════════════════════ -->
     <div class="home-stats" id="home-stats">
         <div class="stat-item">
             <span class="stat-number" id="stat-videos">—</span>
@@ -62,8 +79,11 @@
         </div>
     </div>
 
-    <!-- Main Navigation Cards -->
+    <!-- ══════════════════════════════════════════════
+         MAIN 4 NAVIGATION CARDS
+         ══════════════════════════════════════════════ -->
     <div class="home-cards">
+
         <a href="videos.html" class="card card-lectures">
             <div class="card-icon">🎥</div>
             <div class="card-info">
@@ -99,9 +119,12 @@
             </div>
             <div class="card-arrow">›</div>
         </a>
+
     </div>
 
-    <!-- Admin Link (small, bottom) -->
+    <!-- ══════════════════════════════════════════════
+         FOOTER
+         ══════════════════════════════════════════════ -->
     <div class="home-footer">
         <p>Made with ❤️ by <strong>Sagar Sir</strong></p>
         <a href="login.html" class="admin-link">🔒 Teacher Login</a>
@@ -110,13 +133,6 @@
     <script src="./script.js"></script>
     <script>
         initHomePage();
-    </script>
-        <!-- Redirect fallback -->
-    <script>
-        // Only redirect to splash if coming fresh (not from splash)
-        if (!sessionStorage.getItem('sws_splash_done')) {
-            window.location.href = 'splash.html';
-        }
     </script>
 </body>
 </html>
