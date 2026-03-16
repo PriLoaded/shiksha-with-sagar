@@ -2,163 +2,279 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <meta name="theme-color" content="#1a1a6e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <title>Admin Dashboard — Shiksha With Sagar</title>
-
+    <title>Admin — Shiksha With Sagar</title>
     <link rel="icon" type="image/png" href="../icons/icon-192x192.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Poppins', sans-serif;
-            background: #f0f2f5;
-            min-height: 100vh;
-            -webkit-font-smoothing: antialiased;
-        }
-        .admin-topbar {
-            background: linear-gradient(145deg, #1a1a6e, #0d0d45);
-            padding: 18px 20px;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-        .admin-topbar h1 {
-            font-size: 18px;
-            font-weight: 700;
-        }
-        .admin-topbar p {
-            font-size: 12px;
-            opacity: 0.65;
-            margin-top: 2px;
-        }
-        .logout-btn {
-            background: rgba(255,255,255,0.15);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            padding: 8px 20px;
-            border-radius: 22px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-            font-family: inherit;
-        }
-        .dashboard-grid {
-            padding: 24px 18px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 14px;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .dash-card {
-            background: #fff;
-            border-radius: 18px;
-            padding: 24px 18px;
-            text-align: center;
-            box-shadow: 0 2px 16px rgba(0,0,0,0.06);
-            text-decoration: none;
-            color: #1a1a2e;
-            transition: transform 0.2s;
-        }
-        .dash-card:active { transform: scale(0.96); }
-        .dash-icon { font-size: 36px; margin-bottom: 10px; }
-        .dash-label { font-size: 13px; font-weight: 600; }
-        .dash-card.full-width {
-            grid-column: 1 / -1;
-        }
-        .welcome-card {
-            grid-column: 1 / -1;
-            background: linear-gradient(135deg, #1a1a6e, #0d0d45);
-            color: #fff;
-            padding: 28px 22px;
-            border-radius: 20px;
-            margin-bottom: 4px;
-        }
-        .welcome-card h2 {
-            font-size: 20px;
-            margin-bottom: 6px;
-        }
-        .welcome-card p {
-            font-size: 13px;
-            opacity: 0.7;
-        }
-    </style>
-
+    <link rel="stylesheet" href="../css/admin.css">
     <script>
-        var user = null;
-        try { user = JSON.parse(localStorage.getItem('sws_user')); } catch(e){}
-        if (!user || user.role !== 'admin') {
-            window.location.replace('../login.html');
-        }
+        try{ var u=JSON.parse(localStorage.getItem('sws_user'));
+        if(!u||u.role!=='admin') window.location.replace('../login.html');
+        }catch(e){ window.location.replace('../login.html'); }
     </script>
 </head>
 <body>
 
+    <!-- Toast -->
+    <div id="admin-toast" class="admin-toast"></div>
+
+    <!-- Topbar -->
     <div class="admin-topbar">
         <div>
             <h1>⚙️ Admin Panel</h1>
             <p>Shiksha With Sagar</p>
         </div>
-        <button class="logout-btn" onclick="logout()">Logout ↗</button>
+        <button class="topbar-logout" onclick="adminLogout()">Logout ↗</button>
     </div>
 
-    <div class="dashboard-grid">
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+        <div id="breadcrumb"></div>
+    </div>
 
-        <div class="welcome-card">
-            <h2 id="admin-greeting">Welcome, Sagar Sir! 👋</h2>
-            <p>Manage your lectures, notes, and announcements from here.</p>
+    <!-- ═══ VIEW: OVERVIEW ═══ -->
+    <div class="admin-view" id="view-overview">
+        <h2 style="margin-bottom:16px">📊 Dashboard Overview</h2>
+        <div class="ov-grid">
+            <div class="ov-card" onclick="navigateTo('classes')">
+                <span class="ov-num" id="ov-classes">0</span>
+                <span class="ov-label">Classes</span>
+            </div>
+            <div class="ov-card" onclick="navigateTo('classes')">
+                <span class="ov-num" id="ov-streams">0</span>
+                <span class="ov-label">Streams</span>
+            </div>
+            <div class="ov-card" onclick="navigateTo('classes')">
+                <span class="ov-num" id="ov-subjects">0</span>
+                <span class="ov-label">Subjects</span>
+            </div>
+            <div class="ov-card" onclick="navigateTo('classes')">
+                <span class="ov-num" id="ov-chapters">0</span>
+                <span class="ov-label">Chapters</span>
+            </div>
+            <div class="ov-card">
+                <span class="ov-num" id="ov-videos">0</span>
+                <span class="ov-label">Videos</span>
+            </div>
+            <div class="ov-card">
+                <span class="ov-num" id="ov-live">0</span>
+                <span class="ov-label">Live Streams</span>
+            </div>
+            <div class="ov-card">
+                <span class="ov-num" id="ov-pdfs">0</span>
+                <span class="ov-label">PDFs</span>
+            </div>
+            <div class="ov-card">
+                <span class="ov-num" id="ov-students">0</span>
+                <span class="ov-label">Students</span>
+            </div>
+        </div>
+        <button class="btn-add" style="width:100%" onclick="navigateTo('classes')">📁 Manage Course Structure →</button>
+    </div>
+
+    <!-- ═══ VIEW: CLASSES ═══ -->
+    <div class="admin-view" id="view-classes">
+        <div class="view-header">
+            <h2>🏫 Classes</h2>
+            <button class="btn-add" onclick="addClass()">+ Add Class</button>
+        </div>
+        <div id="classes-list"></div>
+    </div>
+
+    <!-- ═══ VIEW: STREAMS ═══ -->
+    <div class="admin-view" id="view-streams">
+        <div class="view-header">
+            <h2>📋 Streams — <span id="streams-class-name"></span></h2>
+            <button class="btn-add" onclick="addStream()">+ Add Stream</button>
+        </div>
+        <div id="streams-list"></div>
+    </div>
+
+    <!-- ═══ VIEW: SUBJECTS ═══ -->
+    <div class="admin-view" id="view-subjects">
+        <div class="view-header">
+            <h2>📚 Subjects — <span id="subjects-stream-name"></span></h2>
+            <button class="btn-add" onclick="toggleForm('subject-form')">+ Add Subject</button>
         </div>
 
-        <a href="../admin.html" class="dash-card">
-            <div class="dash-icon">🎥</div>
-            <div class="dash-label">Manage Videos</div>
-        </a>
+        <!-- Add Subject Form -->
+        <div class="add-form-panel" id="subject-form">
+            <div class="form-card">
+                <h3>➕ New Subject</h3>
+                <form onsubmit="submitSubject(event)">
+                    <div class="fg">
+                        <label>Subject Name *</label>
+                        <input type="text" id="sub-name" placeholder="e.g. Physics" required>
+                    </div>
+                    <div class="fg">
+                        <label>Description</label>
+                        <textarea id="sub-desc" placeholder="Short description of the subject"></textarea>
+                    </div>
+                    <div class="fg">
+                        <div class="picker-label">Choose Icon</div>
+                        <div class="icon-grid" id="icon-grid"></div>
+                    </div>
+                    <div class="fg">
+                        <div class="picker-label">Choose Color</div>
+                        <div class="color-grid" id="color-grid"></div>
+                    </div>
+                    <button type="submit" class="btn-submit">Create Subject</button>
+                    <button type="button" class="btn-cancel" onclick="toggleForm('subject-form')">Cancel</button>
+                </form>
+            </div>
+        </div>
 
-        <a href="../admin.html" class="dash-card">
-            <div class="dash-icon">🔴</div>
-            <div class="dash-label">Live Streams</div>
-        </a>
+        <div id="subjects-list"></div>
+    </div>
 
-        <a href="../admin.html" class="dash-card">
-            <div class="dash-icon">📚</div>
-            <div class="dash-label">Study Material</div>
-        </a>
+    <!-- ═══ VIEW: CHAPTERS ═══ -->
+    <div class="admin-view" id="view-chapters">
+        <div class="view-header">
+            <h2><span id="chapters-subject-name"></span></h2>
+            <button class="btn-add" onclick="toggleForm('chapter-form')">+ Add Chapter</button>
+        </div>
 
-        <a href="../admin.html" class="dash-card">
-            <div class="dash-icon">📢</div>
-            <div class="dash-label">Announcements</div>
-        </a>
+        <!-- Add Chapter Form -->
+        <div class="add-form-panel" id="chapter-form">
+            <div class="form-card">
+                <h3>➕ New Chapter</h3>
+                <form onsubmit="submitChapter(event)">
+                    <div class="fg">
+                        <label>Chapter Name *</label>
+                        <input type="text" id="ch-name" placeholder="e.g. Laws of Motion" required>
+                    </div>
+                    <div class="fg">
+                        <label>Description</label>
+                        <textarea id="ch-desc" placeholder="Brief description of this chapter"></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Create Chapter</button>
+                    <button type="button" class="btn-cancel" onclick="toggleForm('chapter-form')">Cancel</button>
+                </form>
+            </div>
+        </div>
 
-        <a href="../student-dashboard.html" class="dash-card full-width" style="background:#e8f0fe">
-            <div class="dash-icon">👁️</div>
-            <div class="dash-label">View Student App</div>
-        </a>
+        <div id="chapters-list-admin"></div>
+    </div>
+
+    <!-- ═══ VIEW: CHAPTER CONTENT ═══ -->
+    <div class="admin-view" id="view-content">
+        <div class="view-header">
+            <h2><span id="content-chapter-name"></span></h2>
+        </div>
+
+        <!-- Tabs -->
+        <div class="ct-tabs">
+            <button class="ct-tab active" data-tab="videos" onclick="switchContentTab('videos')">🎥 Videos</button>
+            <button class="ct-tab" data-tab="live" onclick="switchContentTab('live')">🔴 Live</button>
+            <button class="ct-tab" data-tab="pdfs" onclick="switchContentTab('pdfs')">📄 PDFs</button>
+        </div>
+
+        <!-- ─── VIDEOS PANEL ─── -->
+        <div class="ct-panel active" id="panel-videos">
+            <button class="btn-add" style="width:100%;margin-bottom:14px" onclick="toggleForm('video-form')">+ Add Video</button>
+
+            <div class="add-form-panel" id="video-form">
+                <div class="form-card">
+                    <h3>🎥 Add Video Lecture</h3>
+                    <form onsubmit="submitVideo(event)">
+                        <div class="fg">
+                            <label>Video Title *</label>
+                            <input type="text" id="vid-title" placeholder="e.g. Introduction to Mechanics" required>
+                        </div>
+                        <div class="fg">
+                            <label>YouTube Link *</label>
+                            <input type="text" id="vid-link" placeholder="Paste YouTube URL or Video ID" required>
+                        </div>
+                        <div class="fg-row">
+                            <div class="fg">
+                                <label>Duration</label>
+                                <input type="text" id="vid-duration" placeholder="e.g. 25:30">
+                            </div>
+                            <div class="fg">
+                                <label>Date</label>
+                                <input type="date" id="vid-date">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit">Add Video</button>
+                        <button type="button" class="btn-cancel" onclick="toggleForm('video-form')">Cancel</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="videos-admin-list"></div>
+        </div>
+
+        <!-- ─── LIVE PANEL ─── -->
+        <div class="ct-panel" id="panel-live">
+            <button class="btn-add" style="width:100%;margin-bottom:14px" onclick="toggleForm('live-form')">+ Add Live Stream</button>
+
+            <div class="add-form-panel" id="live-form">
+                <div class="form-card">
+                    <h3>🔴 Add Live Stream</h3>
+                    <form onsubmit="submitLive(event)">
+                        <div class="fg">
+                            <label>Stream Title *</label>
+                            <input type="text" id="live-title" placeholder="e.g. Doubt Session — Chapter 1" required>
+                        </div>
+                        <div class="fg">
+                            <label>YouTube Live Link *</label>
+                            <input type="text" id="live-link" placeholder="Paste YouTube Live URL" required>
+                        </div>
+                        <div class="fg">
+                            <label>Scheduled Date &amp; Time</label>
+                            <input type="datetime-local" id="live-time">
+                        </div>
+                        <button type="submit" class="btn-submit">Add Live Stream</button>
+                        <button type="button" class="btn-cancel" onclick="toggleForm('live-form')">Cancel</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="live-admin-list"></div>
+        </div>
+
+        <!-- ─── PDFS PANEL ─── -->
+        <div class="ct-panel" id="panel-pdfs">
+            <button class="btn-add" style="width:100%;margin-bottom:14px" onclick="toggleForm('pdf-form')">+ Add PDF</button>
+
+            <div class="add-form-panel" id="pdf-form">
+                <div class="form-card">
+                    <h3>📄 Add Study Material (PDF)</h3>
+                    <form onsubmit="submitPdf(event)">
+                        <div class="fg">
+                            <label>PDF Title *</label>
+                            <input type="text" id="pdf-title" placeholder="e.g. Chapter 1 Handwritten Notes" required>
+                        </div>
+                        <div class="fg">
+                            <label>Google Drive Link *</label>
+                            <input type="text" id="pdf-link" placeholder="Paste Google Drive share link" required>
+                        </div>
+                        <div class="fg-row">
+                            <div class="fg">
+                                <label>File Size</label>
+                                <input type="text" id="pdf-size" placeholder="e.g. 2.5 MB">
+                            </div>
+                            <div class="fg">
+                                <label>Date</label>
+                                <input type="date" id="pdf-date">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-submit">Add PDF</button>
+                        <button type="button" class="btn-cancel" onclick="toggleForm('pdf-form')">Cancel</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="pdfs-admin-list"></div>
+        </div>
 
     </div>
 
-    <script>
-        var u = null;
-        try { u = JSON.parse(localStorage.getItem('sws_user')); } catch(e){}
-        if (u && u.name) {
-            document.getElementById('admin-greeting').textContent = 'Welcome, ' + u.name + '! 👋';
-        }
-
-        function logout() {
-            localStorage.removeItem('sws_user');
-            sessionStorage.removeItem('sws_user');
-            sessionStorage.removeItem('sws_admin');
-            sessionStorage.removeItem('sws_splash_done');
-            window.location.replace('../login.html');
-        }
-    </script>
+    <script src="../js/app-data.js"></script>
+    <script src="../js/admin-panel.js"></script>
+    <script>initAdminPanel();</script>
 </body>
 </html>

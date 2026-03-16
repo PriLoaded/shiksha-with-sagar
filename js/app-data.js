@@ -1,17 +1,12 @@
 /* =====================================================
    SHIKSHA WITH SAGAR — SHARED APP DATA
-   
-   ★ This file is included by ALL content pages.
-   ★ It contains:
-     1. Master curriculum (classes, streams, subjects, chapters)
-     2. Student assignments (who can access what)
-     3. Placeholder content (videos, PDFs, live streams per chapter)
-   
-   ★ Later this data will come from Google Sheets API.
-     For now, edit it here.
+   Checks localStorage first, falls back to hardcoded.
    ===================================================== */
 
-
+// These are declared first, then overridden below OR from localStorage
+var MASTER_DATA;
+var CHAPTER_CONTENT;
+var STUDENT_ASSIGNMENTS;
 /* ═══════════════════════════════════════════════════════
    1. MASTER CURRICULUM DATA
    ═══════════════════════════════════════════════════════ */
@@ -461,3 +456,31 @@ function checkStudentAccess(subjectId) {
     if (!assignment) return false;
     return assignment.subjects.indexOf(subjectId) !== -1;
 }
+/* ═══════════════════════════════════════════════════════
+   LOAD ADMIN-MODIFIED DATA FROM LOCALSTORAGE
+   If admin has made changes, use those instead of hardcoded data.
+   This runs after all defaults are defined above.
+   ═══════════════════════════════════════════════════════ */
+
+(function loadAdminModifiedData() {
+    try {
+        var savedMaster = localStorage.getItem('sws_master_data');
+        if (savedMaster) {
+            MASTER_DATA = JSON.parse(savedMaster);
+        }
+    } catch (e) { /* keep hardcoded */ }
+
+    try {
+        var savedContent = localStorage.getItem('sws_chapter_content');
+        if (savedContent) {
+            CHAPTER_CONTENT = JSON.parse(savedContent);
+        }
+    } catch (e) { /* keep hardcoded */ }
+
+    try {
+        var savedAssign = localStorage.getItem('sws_student_assignments');
+        if (savedAssign) {
+            STUDENT_ASSIGNMENTS = JSON.parse(savedAssign);
+        }
+    } catch (e) { /* keep hardcoded */ }
+})();
