@@ -1,124 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#1a1a6e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Dashboard — Shiksha With Sagar</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Shiksha With Sagar</title>
 
-    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
-    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/student-dashboard.css">
-
-    <script>
-        try {
-            var u = JSON.parse(localStorage.getItem('sws_user'));
-            if (!u || u.role !== 'student') window.location.replace('login.html');
-        } catch(e) { window.location.replace('login.html'); }
-    </script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/student-dashboard.css">
 </head>
+
 <body>
 
-    <!-- ══════════════════════════════════════════════
-         MAIN VIEW
-         ══════════════════════════════════════════════ -->
-    <div class="view active" id="view-dashboard">
+<!-- TOP BAR -->
+<div class="topbar">
+    <div class="brand">📖 <span>SWS</span></div>
+    <button class="logout-btn" onclick="studentLogout()">Logout</button>
+</div>
 
-        <!-- 1. TOP BAR (Simplified) -->
-        <div class="dash-topbar">
-            <div class="topbar-logo">📖 <span>SWS</span></div>
-            <button class="topbar-logout" onclick="studentLogout()">Logout</button>
-        </div>
-
-        <!-- 2. WELCOME & PROFILE SECTION -->
-        <div class="dash-header-new">
-            <div class="profile-row">
-                <div class="avatar-large" id="dash-avatar">S</div>
-                <div class="welcome-text-col">
-                    <p class="time-greeting" id="dash-greeting">Good Morning ☀️</p>
-                    <h1 class="welcome-name">Welcome back, <span id="dash-student-name">Student</span>!</h1>
-                    <p class="welcome-tagline">Keep learning and stay consistent.</p>
-                </div>
-            </div>
-
-            <div class="dash-badges-row">
-                <span class="pill-badge" id="dash-class-name">Class 11</span>
-                <span class="pill-badge" id="dash-stream-name">Science</span>
-            </div>
-        </div>
-
-        <!-- 3. MOTIVATIONAL QUOTE CARD -->
-        <div class="quote-card" id="quote-card">
-            <div class="quote-icon">“</div>
-            <p class="quote-text" id="motivational-quote">Small progress every day leads to big results.</p>
-            <div class="quote-line"></div>
-        </div>
-
-        <!-- 4. STATS SECTION -->
-        <div class="stats-grid">
-            <div class="stat-box">
-                <span class="stat-val" id="stat-subjects">0</span>
-                <span class="stat-lbl">Subjects</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-val" id="stat-chapters">0</span>
-                <span class="stat-lbl">Chapters</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-val" id="stat-total-videos">0</span>
-                <span class="stat-lbl">Videos</span>
-            </div>
-            <div class="stat-box">
-                <span class="stat-val" id="stat-total-notes">0</span>
-                <span class="stat-lbl">Notes</span>
-            </div>
-        </div>
-
-        <!-- 5. SUBJECTS SECTION -->
-        <div class="section-title-row">
-            <h2>📚 My Learning Path</h2>
-        </div>
-
-        <div class="subjects-grid" id="subjects-grid">
-            <!-- Subject cards rendered by JS -->
-        </div>
-
-        <!-- 6. QUICK ACTIONS -->
-        <div class="section-title-row">
-            <h2>⚡ Quick Links</h2>
-        </div>
-
-        <div class="quick-links-row">
-            <a href="livestreams.html" class="ql-item">
-                <div class="ql-icon">🔴</div>
-                <span>Live Class</span>
-            </a>
-            <a href="study-material.html" class="ql-item">
-                <div class="ql-icon">📑</div>
-                <span>All Notes</span>
-            </a>
-            <a href="announcements.html" class="ql-item">
-                <div class="ql-icon">📢</div>
-                <span>Updates</span>
-            </a>
-        </div>
-
-        <div class="dash-footer-new">
-            <p>Shiksha With Sagar · Version 2.0</p>
-            <p>Made with ❤️ by Sagar Sir</p>
-        </div>
+<!-- PROFILE SECTION -->
+<div class="profile-section">
+    <div class="profile-avatar" id="dash-avatar">S</div>
+    <div class="profile-text">
+        <p class="time-greet" id="dash-greeting">Good Morning ☀️</p>
+        <h2>Welcome back, <span id="dash-student-name">Student</span>!</h2>
+        <p class="sub-text">Keep learning and stay consistent.</p>
     </div>
+</div>
 
-    <!-- Script inclusion -->
-    <script src="./js/app-data.js"></script>
-    <script src="./js/student-dashboard.js"></script>
-    <script>
-        initStudentDashboard();
-    </script>
+<!-- MOTIVATIONAL CARD -->
+<div class="quote-card">
+    <p class="quote-text" id="motivational-quote"></p>
+</div>
+
+<!-- STATS -->
+<div class="stats-section">
+    <div class="stat-card">
+        <span id="stat-subjects">0</span>
+        <small>Subjects</small>
+    </div>
+    <div class="stat-card">
+        <span id="stat-chapters">0</span>
+        <small>Chapters</small>
+    </div>
+    <div class="stat-card">
+        <span id="stat-total-videos">0</span>
+        <small>Videos</small>
+    </div>
+    <div class="stat-card">
+        <span id="stat-total-notes">0</span>
+        <small>Notes</small>
+    </div>
+</div>
+
+<!-- SUBJECTS -->
+<h3 class="section-title">📚 My Subjects</h3>
+<div class="subjects-grid" id="subjects-grid"></div>
+
+<!-- QUICK LINKS -->
+<h3 class="section-title">⚡ Quick Actions</h3>
+<div class="quick-grid">
+    <a href="livestreams.html" class="quick-card">🔴<span>Live Class</span></a>
+    <a href="study-material.html" class="quick-card">📄<span>All Notes</span></a>
+    <a href="announcements.html" class="quick-card">📢<span>Updates</span></a>
+</div>
+
+<script src="./js/app-data.js"></script>
+<script src="./js/student-dashboard.js"></script>
+<script>initStudentDashboard();</script>
+
 </body>
 </html>
