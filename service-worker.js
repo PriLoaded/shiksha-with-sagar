@@ -1,4 +1,4 @@
-var CACHE_NAME = 'sws-v9';
+var CACHE_NAME = 'sws-v10';
 
 var FILES = [
     './',

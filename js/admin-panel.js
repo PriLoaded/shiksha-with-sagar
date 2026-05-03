@@ -706,44 +706,38 @@ function renderVideosList_admin(videos) {
     list.innerHTML = html;
 }
 
+/* ─── VIDEO FORM with notesPdfLink ──── */
 function submitVideo(e) {
     e.preventDefault();
     var content = getChapterContent(nav.chapterId);
-    var title = document.getElementById('vid-title').value.trim();
-    var link = document.getElementById('vid-link').value.trim();
+
+    var title    = document.getElementById('vid-title').value.trim();
+    var link     = document.getElementById('vid-link').value.trim();
+    var pdfLink  = document.getElementById('vid-pdf-link').value.trim();
     var duration = document.getElementById('vid-duration').value.trim();
-    var date = document.getElementById('vid-date').value;
+    var date     = document.getElementById('vid-date').value;
 
     if (!title || !link) { showToast('Title and YouTube link required', 'error'); return; }
 
     var videoId = extractYouTubeId(link);
-    if (!videoId) { showToast('Invalid YouTube link', 'error'); return; }
+    if (!videoId) { showToast('Invalid YouTube link — paste a full YouTube URL or video ID', 'error'); return; }
 
     if (!content.videos) content.videos = [];
     content.videos.push({
-        id: generateId('vid'),
-        title: title,
-        videoId: videoId,
-        duration: duration || '',
-        date: date || new Date().toISOString().split('T')[0]
+        id:           generateId('vid'),
+        title:        title,
+        videoId:      videoId,
+        notesPdfLink: pdfLink || '',
+        duration:     duration || '',
+        date:         date || new Date().toISOString().split('T')[0]
     });
 
     saveContentData();
     e.target.reset();
     toggleForm('video-form');
     switchContentTab('videos');
-    showToast('Video added!');
+    showToast('Video added successfully!');
 }
-
-function deleteVideo(id) {
-    if (!confirm('Delete this video?')) return;
-    var content = getChapterContent(nav.chapterId);
-    content.videos = (content.videos || []).filter(function(v) { return v.id !== id; });
-    saveContentData();
-    switchContentTab('videos');
-    showToast('Video deleted!', 'error');
-}
-
 
 /* ── LIVE STREAMS ── */
 function renderLiveList_admin(streams) {

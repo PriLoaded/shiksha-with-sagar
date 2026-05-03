@@ -15,7 +15,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./css/video-player.css">
 
-    <!-- Auth Guard -->
     <script>
         try {
             var u = JSON.parse(localStorage.getItem('sws_user'));
@@ -25,9 +24,7 @@
 </head>
 <body>
 
-    <!-- ══════════════════════════════════════════
-         TOP BAR
-         ══════════════════════════════════════════ -->
+    <!-- ── TOP BAR ── -->
     <div class="player-topbar" id="player-topbar">
         <a href="#" id="back-btn" class="topbar-back">
             <span class="back-arrow">←</span>
@@ -40,13 +37,10 @@
         <div class="topbar-spacer"></div>
     </div>
 
-
-    <!-- ══════════════════════════════════════════
-         VIDEO PLAYER SECTION
-         ══════════════════════════════════════════ -->
+    <!-- ── PLAYER CONTAINER ── -->
     <div class="player-container" id="player-container">
 
-        <!-- YouTube Embedded Player -->
+        <!-- YouTube Player -->
         <div class="video-player-wrapper" id="video-wrapper">
             <div class="player-loading" id="player-loading">
                 <div class="player-spinner"></div>
@@ -62,10 +56,10 @@
             ></iframe>
         </div>
 
-        <!-- Video Info Section -->
+        <!-- Info Section -->
         <div class="video-info-section" id="video-info">
 
-            <!-- Title and Meta -->
+            <!-- Title & Meta -->
             <div class="video-info-card">
                 <h1 class="player-video-title" id="video-title">Video Title</h1>
                 <div class="video-meta-row">
@@ -75,30 +69,29 @@
                     <span class="meta-item" id="video-date">
                         <span class="meta-icon">📅</span> --
                     </span>
-                    <span class="meta-badge" id="video-subject-badge">Physics</span>
+                    <span class="meta-badge" id="video-subject-badge">Subject</span>
                 </div>
             </div>
 
-            <!-- Chapter Info -->
+            <!-- ★ PER-VIDEO NOTES BUTTON — rendered by JS ── -->
+            <div id="video-notes-btn-section"></div>
+
+            <!-- Chapter Info Bar -->
             <div class="chapter-info-bar" id="chapter-info-bar">
                 <div class="chapter-info-left">
                     <span class="chapter-label">CHAPTER</span>
                     <span class="chapter-name" id="chapter-name">Chapter Name</span>
                 </div>
-                <a href="#" id="view-all-videos-btn" class="view-all-btn">
-                    All Videos →
-                </a>
+                <a href="#" id="view-all-videos-btn" class="view-all-btn">All Videos →</a>
             </div>
 
-            <!-- Related Notes Section -->
+            <!-- Chapter-level Notes -->
             <div class="related-notes-section" id="notes-section">
-                <h3 class="section-label">📄 Chapter Notes &amp; PDFs</h3>
-                <div class="notes-list" id="notes-list">
-                    <!-- Rendered by JS -->
-                </div>
+                <h3 class="section-label">📚 Chapter Study Material</h3>
+                <div class="notes-list" id="notes-list"></div>
             </div>
 
-            <!-- Video Navigation (Prev / Next) -->
+            <!-- Prev / Next -->
             <div class="video-nav-section" id="video-nav">
                 <button class="nav-btn nav-prev" id="btn-prev" onclick="goToPrevVideo()">
                     <span class="nav-arrow">←</span>
@@ -116,21 +109,16 @@
                 </button>
             </div>
 
-            <!-- More Videos in this Chapter -->
+            <!-- More Videos -->
             <div class="more-videos-section" id="more-videos-section">
                 <h3 class="section-label">🎥 More Videos in this Chapter</h3>
-                <div class="more-videos-list" id="more-videos-list">
-                    <!-- Rendered by JS -->
-                </div>
+                <div class="more-videos-list" id="more-videos-list"></div>
             </div>
 
         </div>
     </div>
 
-
-    <!-- ══════════════════════════════════════════
-         ERROR STATE (if video not found)
-         ══════════════════════════════════════════ -->
+    <!-- ── ERROR STATE ── -->
     <div class="player-error hidden" id="player-error">
         <div class="error-icon">😕</div>
         <h3>Video Not Found</h3>
@@ -138,11 +126,8 @@
         <a href="student-dashboard.html" class="error-back-btn">← Back to Dashboard</a>
     </div>
 
-
     <script src="./js/app-data.js"></script>
     <script src="./js/video-player.js"></script>
-    <script>
-        initVideoPlayer();
-    </script>
+    <script>initVideoPlayer();</script>
 </body>
 </html>

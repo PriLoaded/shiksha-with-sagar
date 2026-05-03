@@ -173,39 +173,53 @@
         </div>
 
         <!-- ─── VIDEOS PANEL ─── -->
-        <div class="ct-panel active" id="panel-videos">
-            <button class="btn-add" style="width:100%;margin-bottom:14px" onclick="toggleForm('video-form')">+ Add Video</button>
+<div class="ct-panel active" id="panel-videos">
+    <button class="btn-add" style="width:100%;margin-bottom:14px" onclick="toggleForm('video-form')">+ Add Video Lecture</button>
 
-            <div class="add-form-panel" id="video-form">
-                <div class="form-card">
-                    <h3>🎥 Add Video Lecture</h3>
-                    <form onsubmit="submitVideo(event)">
-                        <div class="fg">
-                            <label>Video Title *</label>
-                            <input type="text" id="vid-title" placeholder="e.g. Introduction to Mechanics" required>
-                        </div>
-                        <div class="fg">
-                            <label>YouTube Link *</label>
-                            <input type="text" id="vid-link" placeholder="Paste YouTube URL or Video ID" required>
-                        </div>
-                        <div class="fg-row">
-                            <div class="fg">
-                                <label>Duration</label>
-                                <input type="text" id="vid-duration" placeholder="e.g. 25:30">
-                            </div>
-                            <div class="fg">
-                                <label>Date</label>
-                                <input type="date" id="vid-date">
-                            </div>
-                        </div>
-                        <button type="submit" class="btn-submit">Add Video</button>
-                        <button type="button" class="btn-cancel" onclick="toggleForm('video-form')">Cancel</button>
-                    </form>
+    <div class="add-form-panel" id="video-form">
+        <div class="form-card">
+            <h3>🎥 Add Recorded Lecture</h3>
+            <form onsubmit="submitVideo(event)">
+
+                <div class="fg">
+                    <label>Video Title *</label>
+                    <input type="text" id="vid-title" placeholder="e.g. Introduction to Mechanics" required>
                 </div>
-            </div>
 
-            <div id="videos-admin-list"></div>
+                <div class="fg">
+                    <label>YouTube Link *</label>
+                    <input type="text" id="vid-link" placeholder="Paste YouTube URL or Video ID" required>
+                </div>
+
+                <!-- ★ NEW: PDF Notes field -->
+                <div class="fg">
+                    <label>📋 Smartboard Notes PDF (Google Drive link)</label>
+                    <input type="text" id="vid-pdf-link" placeholder="Paste Google Drive share link (optional)">
+                    <p style="font-size:11px;color:#8b8ba8;margin-top:4px">
+                        Students will see a "View Notes" button for this video.
+                        Leave blank if no notes for this specific video.
+                    </p>
+                </div>
+
+                <div class="fg-row">
+                    <div class="fg">
+                        <label>Duration</label>
+                        <input type="text" id="vid-duration" placeholder="e.g. 25:30">
+                    </div>
+                    <div class="fg">
+                        <label>Date</label>
+                        <input type="date" id="vid-date">
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Add Video</button>
+                <button type="button" class="btn-cancel" onclick="toggleForm('video-form')">Cancel</button>
+            </form>
         </div>
+    </div>
+
+    <div id="videos-admin-list"></div>
+</div>
 
         <!-- ─── LIVE PANEL ─── -->
         <div class="ct-panel" id="panel-live">
