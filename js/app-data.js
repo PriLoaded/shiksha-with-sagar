@@ -202,153 +202,639 @@ var STUDENT_ASSIGNMENTS = {
 
 var CHAPTER_CONTENT = {
 
-    // ──── PHYSICS CLASS 11 ────
-
+    // ──── PHYSICS CLASS 11 — CHAPTER 1 ────────────────
     'phy-11-ch1': {
         videos: [
-            { id: 'v1', title: 'Introduction — What is Physics?', videoId: 'dQw4w9WgXcQ', duration: '18:45', date: '2025-01-10' },
-            { id: 'v2', title: 'Scope and Excitement of Physics', videoId: 'dQw4w9WgXcQ', duration: '22:30', date: '2025-01-12' },
-            { id: 'v3', title: 'Physics & Technology — Real World Applications', videoId: 'dQw4w9WgXcQ', duration: '15:20', date: '2025-01-14' },
-            { id: 'v4', title: 'Fundamental Forces in Nature', videoId: 'dQw4w9WgXcQ', duration: '28:10', date: '2025-01-16' }
+            {
+                id: 'v1',
+                title: 'Introduction — What is Physics?',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_1/view?usp=sharing',
+                duration: '18:45',
+                date: '2025-01-10'
+            },
+            {
+                id: 'v2',
+                title: 'Scope and Excitement of Physics',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_2/view?usp=sharing',
+                duration: '22:30',
+                date: '2025-01-12'
+            },
+            {
+                id: 'v3',
+                title: 'Physics and Technology — Real World Applications',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: '',
+                duration: '15:20',
+                date: '2025-01-14'
+            },
+            {
+                id: 'v4',
+                title: 'Fundamental Forces in Nature',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_4/view?usp=sharing',
+                duration: '28:10',
+                date: '2025-01-16'
+            }
         ],
         liveStreams: [
-            { id: 'l1', title: 'Doubt Session — Physical World', videoId: 'dQw4w9WgXcQ', scheduledTime: '2025-02-10T19:00:00', isLive: false },
-            { id: 'l2', title: 'Quick Revision — Complete Chapter', videoId: 'dQw4w9WgXcQ', scheduledTime: '2025-02-15T19:30:00', isLive: false }
+            {
+                id: 'l1',
+                title: 'Doubt Session — Physical World',
+                videoId: 'dQw4w9WgXcQ',
+                scheduledTime: '2025-02-10T19:00:00',
+                isLive: false
+            },
+            {
+                id: 'l2',
+                title: 'Quick Revision — Complete Chapter',
+                videoId: 'dQw4w9WgXcQ',
+                scheduledTime: '2025-02-15T19:30:00',
+                isLive: false
+            }
         ],
         studyMaterial: [
-            { id: 'm1', title: 'Physical World — Complete Handwritten Notes', fileSize: '2.5 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-10' },
-            { id: 'm2', title: 'Physical World — NCERT Solutions', fileSize: '1.8 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-12' },
-            { id: 'm3', title: 'Practice Questions — Chapter 1', fileSize: '900 KB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-15' }
+            {
+                id: 'm1',
+                title: 'Physical World — Complete Handwritten Notes',
+                fileSize: '2.5 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-10'
+            },
+            {
+                id: 'm2',
+                title: 'Physical World — NCERT Solutions',
+                fileSize: '1.8 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-12'
+            },
+            {
+                id: 'm3',
+                title: 'Practice Questions — Chapter 1',
+                fileSize: '900 KB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-15'
+            }
         ]
     },
 
+    // ──── PHYSICS CLASS 11 — CHAPTER 2 ────────────────
     'phy-11-ch2': {
         videos: [
-            { id: 'v5', title: 'SI Units — International System', videoId: 'dQw4w9WgXcQ', duration: '20:15', date: '2025-01-18' },
-            { id: 'v6', title: 'Dimensional Analysis — Part 1', videoId: 'dQw4w9WgXcQ', duration: '25:40', date: '2025-01-20' },
-            { id: 'v7', title: 'Dimensional Analysis — Part 2', videoId: 'dQw4w9WgXcQ', duration: '22:10', date: '2025-01-22' },
-            { id: 'v8', title: 'Significant Figures & Rounding', videoId: 'dQw4w9WgXcQ', duration: '18:55', date: '2025-01-24' },
-            { id: 'v9', title: 'Errors in Measurement', videoId: 'dQw4w9WgXcQ', duration: '30:00', date: '2025-01-26' },
-            { id: 'v10', title: 'Numericals — Units & Measurements', videoId: 'dQw4w9WgXcQ', duration: '35:20', date: '2025-01-28' }
+            {
+                id: 'v5',
+                title: 'SI Units — International System',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_5/view?usp=sharing',
+                duration: '20:15',
+                date: '2025-01-18'
+            },
+            {
+                id: 'v6',
+                title: 'Dimensional Analysis — Part 1',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_6/view?usp=sharing',
+                duration: '25:40',
+                date: '2025-01-20'
+            },
+            {
+                id: 'v7',
+                title: 'Dimensional Analysis — Part 2',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_6/view?usp=sharing',
+                duration: '22:10',
+                date: '2025-01-22'
+            },
+            {
+                id: 'v8',
+                title: 'Significant Figures and Rounding',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: '',
+                duration: '18:55',
+                date: '2025-01-24'
+            },
+            {
+                id: 'v9',
+                title: 'Errors in Measurement',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_7/view?usp=sharing',
+                duration: '30:00',
+                date: '2025-01-26'
+            },
+            {
+                id: 'v10',
+                title: 'Numericals — Units and Measurements',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_7/view?usp=sharing',
+                duration: '35:20',
+                date: '2025-01-28'
+            }
         ],
         liveStreams: [
-            { id: 'l3', title: 'Live Problem Solving — Dimensions', videoId: 'dQw4w9WgXcQ', scheduledTime: '2025-02-12T19:00:00', isLive: true }
+            {
+                id: 'l3',
+                title: 'Live Problem Solving — Dimensions',
+                videoId: 'dQw4w9WgXcQ',
+                scheduledTime: '2025-02-12T19:00:00',
+                isLive: true
+            }
         ],
         studyMaterial: [
-            { id: 'm4', title: 'Units & Measurements — Handwritten Notes', fileSize: '3.1 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-18' },
-            { id: 'm5', title: 'Dimensional Formula Sheet', fileSize: '500 KB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-20' },
-            { id: 'm6', title: 'NCERT Solutions — Chapter 2', fileSize: '2.2 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-22' }
+            {
+                id: 'm4',
+                title: 'Units & Measurements — Handwritten Notes',
+                fileSize: '3.1 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-18'
+            },
+            {
+                id: 'm5',
+                title: 'Dimensional Formula Sheet',
+                fileSize: '500 KB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-20'
+            },
+            {
+                id: 'm6',
+                title: 'NCERT Solutions — Chapter 2',
+                fileSize: '2.2 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-22'
+            }
         ]
     },
 
+    // ──── PHYSICS CLASS 11 — CHAPTER 3 ────────────────
     'phy-11-ch3': {
         videos: [
-            { id: 'v11', title: 'Position, Path Length & Displacement', videoId: 'dQw4w9WgXcQ', duration: '24:30', date: '2025-01-30' },
-            { id: 'v12', title: 'Average & Instantaneous Velocity', videoId: 'dQw4w9WgXcQ', duration: '28:15', date: '2025-02-01' },
-            { id: 'v13', title: 'Acceleration — Uniform & Non-uniform', videoId: 'dQw4w9WgXcQ', duration: '22:00', date: '2025-02-03' },
-            { id: 'v14', title: 'Kinematic Equations Derivation', videoId: 'dQw4w9WgXcQ', duration: '32:45', date: '2025-02-05' },
-            { id: 'v15', title: 'Graphs — x-t, v-t, a-t', videoId: 'dQw4w9WgXcQ', duration: '26:10', date: '2025-02-07' },
-            { id: 'v16', title: 'Free Fall & Vertical Motion', videoId: 'dQw4w9WgXcQ', duration: '20:30', date: '2025-02-09' },
-            { id: 'v17', title: 'Relative Velocity', videoId: 'dQw4w9WgXcQ', duration: '18:50', date: '2025-02-11' },
-            { id: 'v18', title: 'Numericals — Motion in Straight Line', videoId: 'dQw4w9WgXcQ', duration: '40:00', date: '2025-02-13' }
+            {
+                id: 'v11',
+                title: 'Position, Path Length and Displacement',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_8/view?usp=sharing',
+                duration: '24:30',
+                date: '2025-01-30'
+            },
+            {
+                id: 'v12',
+                title: 'Average and Instantaneous Velocity',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_8/view?usp=sharing',
+                duration: '28:15',
+                date: '2025-02-01'
+            },
+            {
+                id: 'v13',
+                title: 'Acceleration — Uniform and Non-uniform',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_9/view?usp=sharing',
+                duration: '22:00',
+                date: '2025-02-03'
+            },
+            {
+                id: 'v14',
+                title: 'Kinematic Equations Derivation',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_9/view?usp=sharing',
+                duration: '32:45',
+                date: '2025-02-05'
+            },
+            {
+                id: 'v15',
+                title: 'Graphs — x-t, v-t, a-t',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: '',
+                duration: '26:10',
+                date: '2025-02-07'
+            },
+            {
+                id: 'v16',
+                title: 'Free Fall and Vertical Motion',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_10/view?usp=sharing',
+                duration: '20:30',
+                date: '2025-02-09'
+            },
+            {
+                id: 'v17',
+                title: 'Relative Velocity',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: '',
+                duration: '18:50',
+                date: '2025-02-11'
+            },
+            {
+                id: 'v18',
+                title: 'Numericals — Motion in Straight Line',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_11/view?usp=sharing',
+                duration: '40:00',
+                date: '2025-02-13'
+            }
         ],
         liveStreams: [],
         studyMaterial: [
-            { id: 'm7', title: 'Motion in Straight Line — Notes', fileSize: '4.0 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-30' },
-            { id: 'm8', title: 'Kinematics Formula Sheet', fileSize: '600 KB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-02-01' },
-            { id: 'm9', title: 'Previous Year Questions — Kinematics', fileSize: '1.5 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-02-05' },
-            { id: 'm10', title: 'NCERT Solutions — Chapter 3', fileSize: '2.8 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-02-08' }
+            {
+                id: 'm7',
+                title: 'Motion in Straight Line — Notes',
+                fileSize: '4.0 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-30'
+            },
+            {
+                id: 'm8',
+                title: 'Kinematics Formula Sheet',
+                fileSize: '600 KB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-02-01'
+            },
+            {
+                id: 'm9',
+                title: 'Previous Year Questions — Kinematics',
+                fileSize: '1.5 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-02-05'
+            },
+            {
+                id: 'm10',
+                title: 'NCERT Solutions — Chapter 3',
+                fileSize: '2.8 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-02-08'
+            }
         ]
     },
 
+    // ──── PHYSICS CLASS 11 — CHAPTER 4 ────────────────
     'phy-11-ch4': {
         videos: [
-            { id: 'v19', title: 'Scalars and Vectors', videoId: 'dQw4w9WgXcQ', duration: '22:00', date: '2025-02-15' },
-            { id: 'v20', title: 'Vector Addition — Triangle & Parallelogram', videoId: 'dQw4w9WgXcQ', duration: '26:30', date: '2025-02-17' },
-            { id: 'v21', title: 'Resolution of Vectors', videoId: 'dQw4w9WgXcQ', duration: '20:15', date: '2025-02-19' },
-            { id: 'v22', title: 'Projectile Motion — Complete', videoId: 'dQw4w9WgXcQ', duration: '35:00', date: '2025-02-21' }
+            {
+                id: 'v19',
+                title: 'Scalars and Vectors',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_12/view?usp=sharing',
+                duration: '22:00',
+                date: '2025-02-15'
+            },
+            {
+                id: 'v20',
+                title: 'Vector Addition — Triangle and Parallelogram',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_12/view?usp=sharing',
+                duration: '26:30',
+                date: '2025-02-17'
+            },
+            {
+                id: 'v21',
+                title: 'Resolution of Vectors',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_13/view?usp=sharing',
+                duration: '20:15',
+                date: '2025-02-19'
+            },
+            {
+                id: 'v22',
+                title: 'Projectile Motion — Complete',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_14/view?usp=sharing',
+                duration: '35:00',
+                date: '2025-02-21'
+            }
         ],
         liveStreams: [
-            { id: 'l4', title: 'Projectile Motion Masterclass', videoId: 'dQw4w9WgXcQ', scheduledTime: '2025-02-25T19:00:00', isLive: false }
+            {
+                id: 'l4',
+                title: 'Projectile Motion Masterclass',
+                videoId: 'dQw4w9WgXcQ',
+                scheduledTime: '2025-02-25T19:00:00',
+                isLive: false
+            }
         ],
         studyMaterial: [
-            { id: 'm11', title: 'Vectors & Projectile — Notes', fileSize: '3.5 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-02-15' },
-            { id: 'm12', title: 'Vector Formulas Cheat Sheet', fileSize: '400 KB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-02-17' }
+            {
+                id: 'm11',
+                title: 'Vectors and Projectile — Notes',
+                fileSize: '3.5 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-02-15'
+            },
+            {
+                id: 'm12',
+                title: 'Vector Formulas Cheat Sheet',
+                fileSize: '400 KB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-02-17'
+            }
         ]
     },
 
+    // ──── PHYSICS CLASS 11 — CHAPTER 5 ────────────────
     'phy-11-ch5': {
         videos: [
-            { id: 'v23', title: "Newton's First Law — Inertia", videoId: 'dQw4w9WgXcQ', duration: '20:00', date: '2025-02-23' },
-            { id: 'v24', title: "Newton's Second Law — F = ma", videoId: 'dQw4w9WgXcQ', duration: '28:30', date: '2025-02-25' },
-            { id: 'v25', title: "Newton's Third Law — Action Reaction", videoId: 'dQw4w9WgXcQ', duration: '18:45', date: '2025-02-27' },
-            { id: 'v26', title: 'Friction — Static & Kinetic', videoId: 'dQw4w9WgXcQ', duration: '32:00', date: '2025-03-01' },
-            { id: 'v27', title: 'Circular Motion Dynamics', videoId: 'dQw4w9WgXcQ', duration: '25:20', date: '2025-03-03' }
+            {
+                id: 'v23',
+                title: "Newton's First Law — Inertia",
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_15/view?usp=sharing',
+                duration: '20:00',
+                date: '2025-02-23'
+            },
+            {
+                id: 'v24',
+                title: "Newton's Second Law — F = ma",
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_15/view?usp=sharing',
+                duration: '28:30',
+                date: '2025-02-25'
+            },
+            {
+                id: 'v25',
+                title: "Newton's Third Law — Action and Reaction",
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_16/view?usp=sharing',
+                duration: '18:45',
+                date: '2025-02-27'
+            },
+            {
+                id: 'v26',
+                title: 'Friction — Static and Kinetic',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_17/view?usp=sharing',
+                duration: '32:00',
+                date: '2025-03-01'
+            },
+            {
+                id: 'v27',
+                title: 'Circular Motion Dynamics',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: '',
+                duration: '25:20',
+                date: '2025-03-03'
+            }
         ],
         liveStreams: [],
         studyMaterial: [
-            { id: 'm13', title: 'Laws of Motion — Complete Notes', fileSize: '4.2 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-02-23' },
-            { id: 'm14', title: 'FBD Practice Problems', fileSize: '1.8 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-02-25' }
+            {
+                id: 'm13',
+                title: 'Laws of Motion — Complete Notes',
+                fileSize: '4.2 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-02-23'
+            },
+            {
+                id: 'm14',
+                title: 'FBD Practice Problems',
+                fileSize: '1.8 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-02-25'
+            }
         ]
     },
 
-    // ──── CHEMISTRY CLASS 11 ────
-
+    // ──── CHEMISTRY CLASS 11 ────────────────────────────
     'chem-11-ch1': {
         videos: [
-            { id: 'v30', title: 'Introduction — What is Chemistry?', videoId: 'dQw4w9WgXcQ', duration: '16:20', date: '2025-01-10' },
-            { id: 'v31', title: 'Mole Concept — Complete', videoId: 'dQw4w9WgXcQ', duration: '35:00', date: '2025-01-13' },
-            { id: 'v32', title: 'Stoichiometry & Balancing', videoId: 'dQw4w9WgXcQ', duration: '28:30', date: '2025-01-16' }
+            {
+                id: 'v30',
+                title: 'Introduction — What is Chemistry?',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_18/view?usp=sharing',
+                duration: '16:20',
+                date: '2025-01-10'
+            },
+            {
+                id: 'v31',
+                title: 'Mole Concept — Complete',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_19/view?usp=sharing',
+                duration: '35:00',
+                date: '2025-01-13'
+            },
+            {
+                id: 'v32',
+                title: 'Stoichiometry and Balancing',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_19/view?usp=sharing',
+                duration: '28:30',
+                date: '2025-01-16'
+            }
         ],
         liveStreams: [],
         studyMaterial: [
-            { id: 'm20', title: 'Basic Concepts — Notes', fileSize: '2.0 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-10' },
-            { id: 'm21', title: 'Mole Concept Formula Sheet', fileSize: '700 KB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-13' }
+            {
+                id: 'm20',
+                title: 'Basic Concepts — Notes',
+                fileSize: '2.0 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-10'
+            },
+            {
+                id: 'm21',
+                title: 'Mole Concept Formula Sheet',
+                fileSize: '700 KB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-13'
+            }
         ]
     },
 
     'chem-11-ch2': {
         videos: [
-            { id: 'v33', title: 'Bohr Model of Atom', videoId: 'dQw4w9WgXcQ', duration: '30:00', date: '2025-01-20' },
-            { id: 'v34', title: 'Quantum Numbers Explained', videoId: 'dQw4w9WgXcQ', duration: '25:15', date: '2025-01-23' },
-            { id: 'v35', title: 'Electron Configuration', videoId: 'dQw4w9WgXcQ', duration: '22:40', date: '2025-01-26' }
+            {
+                id: 'v33',
+                title: 'Bohr Model of Atom',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_20/view?usp=sharing',
+                duration: '30:00',
+                date: '2025-01-20'
+            },
+            {
+                id: 'v34',
+                title: 'Quantum Numbers Explained',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_21/view?usp=sharing',
+                duration: '25:15',
+                date: '2025-01-23'
+            },
+            {
+                id: 'v35',
+                title: 'Electron Configuration',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_21/view?usp=sharing',
+                duration: '22:40',
+                date: '2025-01-26'
+            }
         ],
         liveStreams: [
-            { id: 'l5', title: 'Doubt Session — Atomic Structure', videoId: 'dQw4w9WgXcQ', scheduledTime: '2025-02-18T20:00:00', isLive: false }
+            {
+                id: 'l5',
+                title: 'Doubt Session — Atomic Structure',
+                videoId: 'dQw4w9WgXcQ',
+                scheduledTime: '2025-02-18T20:00:00',
+                isLive: false
+            }
         ],
         studyMaterial: [
-            { id: 'm22', title: 'Structure of Atom — Notes', fileSize: '3.4 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-20' }
+            {
+                id: 'm22',
+                title: 'Structure of Atom — Notes',
+                fileSize: '3.4 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-20'
+            }
         ]
     },
 
-    // ──── MATHEMATICS CLASS 11 ────
-
+    // ──── MATHEMATICS CLASS 11 ───────────────────────────
     'math-11-ch1': {
         videos: [
-            { id: 'v40', title: 'Types of Sets — Finite, Infinite, Empty', videoId: 'dQw4w9WgXcQ', duration: '18:30', date: '2025-01-11' },
-            { id: 'v41', title: 'Venn Diagrams & Set Operations', videoId: 'dQw4w9WgXcQ', duration: '24:00', date: '2025-01-14' },
-            { id: 'v42', title: 'Numericals — Sets', videoId: 'dQw4w9WgXcQ', duration: '30:15', date: '2025-01-17' }
+            {
+                id: 'v40',
+                title: 'Types of Sets — Finite, Infinite, Empty',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_22/view?usp=sharing',
+                duration: '18:30',
+                date: '2025-01-11'
+            },
+            {
+                id: 'v41',
+                title: 'Venn Diagrams and Set Operations',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_22/view?usp=sharing',
+                duration: '24:00',
+                date: '2025-01-14'
+            },
+            {
+                id: 'v42',
+                title: 'Numericals — Sets',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_23/view?usp=sharing',
+                duration: '30:15',
+                date: '2025-01-17'
+            }
         ],
         liveStreams: [],
         studyMaterial: [
-            { id: 'm30', title: 'Sets — Handwritten Notes', fileSize: '1.5 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-11' }
+            {
+                id: 'm30',
+                title: 'Sets — Handwritten Notes',
+                fileSize: '1.5 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-11'
+            }
         ]
     },
 
-    // ──── BIOLOGY CLASS 11 ────
-
+    // ──── BIOLOGY CLASS 11 ──────────────────────────────
     'bio-11-ch1': {
         videos: [
-            { id: 'v50', title: 'What is Life? — Characteristics', videoId: 'dQw4w9WgXcQ', duration: '20:00', date: '2025-01-12' },
-            { id: 'v51', title: 'Taxonomy & Nomenclature', videoId: 'dQw4w9WgXcQ', duration: '25:30', date: '2025-01-15' }
+            {
+                id: 'v50',
+                title: 'What is Life? — Characteristics',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_24/view?usp=sharing',
+                duration: '20:00',
+                date: '2025-01-12'
+            },
+            {
+                id: 'v51',
+                title: 'Taxonomy and Nomenclature',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: '',
+                duration: '25:30',
+                date: '2025-01-15'
+            }
         ],
         liveStreams: [],
         studyMaterial: [
-            { id: 'm40', title: 'Living World — Notes', fileSize: '2.1 MB', driveLink: 'https://drive.google.com/file/d/SAMPLE/view', date: '2025-01-12' }
+            {
+                id: 'm40',
+                title: 'Living World — Notes',
+                fileSize: '2.1 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-01-12'
+            }
         ]
+    },
+
+    // ──── PHYSICS CLASS 12 ─────────────────────────────
+    'phy-12-ch1': {
+        videos: [
+            {
+                id: 'v60',
+                title: 'Electric Charges — Introduction',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_25/view?usp=sharing',
+                duration: '26:00',
+                date: '2025-03-05'
+            },
+            {
+                id: 'v61',
+                title: "Coulomb's Law",
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_25/view?usp=sharing',
+                duration: '30:20',
+                date: '2025-03-07'
+            }
+        ],
+        liveStreams: [],
+        studyMaterial: [
+            {
+                id: 'm50',
+                title: 'Electric Charges — Notes',
+                fileSize: '2.8 MB',
+                driveLink: 'https://drive.google.com/file/d/SAMPLE/view',
+                date: '2025-03-05'
+            }
+        ]
+    },
+
+    'phy-12-ch2': {
+        videos: [
+            {
+                id: 'v62',
+                title: 'Electrostatic Potential — Introduction',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_26/view?usp=sharing',
+                duration: '24:15',
+                date: '2025-03-10'
+            }
+        ],
+        liveStreams: [],
+        studyMaterial: []
+    },
+
+    'chem-12-ch1': {
+        videos: [
+            {
+                id: 'v70',
+                title: 'The Solid State — Introduction',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: 'https://drive.google.com/file/d/SAMPLE_ID_27/view?usp=sharing',
+                duration: '22:30',
+                date: '2025-03-01'
+            }
+        ],
+        liveStreams: [],
+        studyMaterial: []
+    },
+
+    'chem-12-ch2': {
+        videos: [
+            {
+                id: 'v71',
+                title: 'Solutions — Concentration Terms',
+                videoId: 'dQw4w9WgXcQ',
+                notesPdfLink: '',
+                duration: '28:00',
+                date: '2025-03-08'
+            }
+        ],
+        liveStreams: [],
+        studyMaterial: []
     }
 };
-
 
 /* ═══════════════════════════════════════════════════════
    4. HELPER FUNCTIONS (used by all pages)
