@@ -1,224 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#0a0a3e">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>Login — Shiksha With Sagar</title>
-
-    <link rel="icon" type="image/png" href="./icons/icon-192x192.png">
-    <link rel="apple-touch-icon" href="./icons/icon-192x192.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/login.css">
+    <title>Login - Shiksha With Sagar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
+<body style="font-family:sans-serif; padding:40px;">
 
-    <!-- ══════════════════════════════════════════
-         TOAST NOTIFICATION
-         ══════════════════════════════════════════ -->
-    <div id="toast" class="toast hidden">
-        <span id="toast-icon" class="toast-icon"></span>
-        <span id="toast-msg" class="toast-msg"></span>
-    </div>
+<h2>Login</h2>
 
+<form id="login-form">
+    <input type="email" id="login-email" placeholder="Email" required><br><br>
+    <input type="password" id="login-password" placeholder="Password" required><br><br>
+    <button type="submit">Login</button>
+</form>
 
-    <!-- ══════════════════════════════════════════
-         BACKGROUND DECORATIONS
-         ══════════════════════════════════════════ -->
-    <div class="login-bg">
-        <div class="bg-circle bg-circle-1"></div>
-        <div class="bg-circle bg-circle-2"></div>
-        <div class="bg-circle bg-circle-3"></div>
-        <div class="bg-wave">
-            <svg viewBox="0 0 1440 320" preserveAspectRatio="none">
-                <path fill="rgba(255,255,255,0.02)" d="M0,160L48,170.7C96,181,192,203,288,186.7C384,171,480,117,576,117.3C672,117,768,171,864,197.3C960,224,1056,224,1152,202.7C1248,181,1344,139,1392,117.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"/>
-            </svg>
-        </div>
-    </div>
+<p>Don't have an account? <a href="signup.html">Sign Up</a></p>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/auth.js"></script>
 
-    <!-- ══════════════════════════════════════════
-         MAIN LOGIN CONTAINER
-         ══════════════════════════════════════════ -->
-    <div class="login-wrapper">
+<script>
+redirectIfLoggedIn();
 
-        <!-- ─── HEADER / BRANDING ─── -->
-        <div class="login-brand" id="login-brand">
-            <div class="brand-icon-circle">
-                <span class="logo"><img src="./icons/teacher-photo.png" height="120px" width="100px" alt="SWS"></span>
-            </div>
-            <h1 class="brand-title">Shiksha With Sagar</h1>
-            <p class="brand-sub">Login to access your learning dashboard</p>
-        </div>
+document.getElementById("login-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
 
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
 
-        <!-- ─── ROLE SELECTOR TABS ─── -->
-        <div class="role-selector" id="role-selector">
-            <button class="role-tab active" id="tab-student" onclick="switchRole('student')">
-                <span class="role-tab-icon">🎓</span>
-                <span class="role-tab-text">Student</span>
-            </button>
-            <button class="role-tab" id="tab-admin" onclick="switchRole('admin')">
-                <span class="role-tab-icon">🔐</span>
-                <span class="role-tab-text">Admin</span>
-            </button>
-            <div class="tab-indicator" id="tab-indicator"></div>
-        </div>
+    const success = await loginUser(email, password);
 
+    if (success) {
+        window.location.href = "student-dashboard.html";
+    }
+});
+</script>
 
-        <!-- ─── STUDENT LOGIN CARD ─── -->
-        <div class="login-card active" id="card-student">
-            <div class="card-header">
-                <div class="card-header-icon">🎓</div>
-                <div>
-                    <h2>Student Login</h2>
-                    <p>Access your lectures, notes &amp; classes</p>
-                </div>
-            </div>
+</body>
+</html><!DOCTYPE html>
+<html>
+<head>
+    <title>Login - Shiksha With Sagar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body style="font-family:sans-serif; padding:40px;">
 
-            <form id="student-form" onsubmit="handleStudentLogin(event)" novalidate>
+<h2>Login</h2>
 
-                <div class="input-group" id="sg-email">
-                    <label for="s-email">Email or Username</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">📧</span>
-                        <input
-                            type="text"
-                            id="s-email"
-                            placeholder="Enter your email or username"
-                            required
-                            autocomplete="username"
-                            onfocus="clearError('sg-email')"
-                        >
-                    </div>
-                    <span class="input-error"></span>
-                </div>
+<form id="login-form">
+    <input type="email" id="login-email" placeholder="Email" required><br><br>
+    <input type="password" id="login-password" placeholder="Password" required><br><br>
+    <button type="submit">Login</button>
+</form>
 
-                <div class="input-group" id="sg-pass">
-                    <label for="s-password">Password</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">🔒</span>
-                        <input
-                            type="password"
-                            id="s-password"
-                            placeholder="Enter your password"
-                            required
-                            autocomplete="current-password"
-                            onfocus="clearError('sg-pass')"
-                        >
-                        <button type="button" class="toggle-pass" onclick="togglePassword('s-password', this)">
-                            <span class="eye-icon">👁️</span>
-                        </button>
-                    </div>
-                    <span class="input-error"></span>
-                </div>
+<p>Don't have an account? <a href="signup.html">Sign Up</a></p>
 
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" id="s-remember">
-                        <span class="checkmark"></span>
-                        <span>Remember me</span>
-                    </label>
-                    <a href="#" class="forgot-link" onclick="showToast('Contact Sagar Sir to reset your password', 'info')">Forgot Password?</a>
-                </div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="js/auth.js"></script>
 
-                <button type="submit" class="login-btn" id="s-login-btn">
-                    <span class="btn-text" id="s-btn-text">Login as Student</span>
-                    <span class="btn-loader hidden" id="s-btn-loader">
-                        <span class="dot-loader"><i></i><i></i><i></i></span>
-                    </span>
-                </button>
+<script>
+redirectIfLoggedIn();
 
-            </form>
+document.getElementById("login-form").addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-            <div class="card-footer">
-                <p>Demo: <strong>student@sws.com</strong> / <strong>student123</strong></p>
-            </div>
-        </div>
+    const email = document.getElementById("login-email").value;
+    const password = document.getElementById("login-password").value;
 
+    const success = await loginUser(email, password);
 
-        <!-- ─── ADMIN LOGIN CARD ─── -->
-        <div class="login-card" id="card-admin">
-            <div class="card-header">
-                <div class="card-header-icon">🔐</div>
-                <div>
-                    <h2>Admin Login</h2>
-                    <p>Manage content, students &amp; settings</p>
-                </div>
-            </div>
+    if (success) {
+        window.location.href = "student-dashboard.html";
+    }
+});
+</script>
 
-            <form id="admin-form" onsubmit="handleAdminLogin(event)" novalidate>
-
-                <div class="input-group" id="ag-user">
-                    <label for="a-username">Admin Username</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">👤</span>
-                        <input
-                            type="text"
-                            id="a-username"
-                            placeholder="Enter admin username"
-                            required
-                            autocomplete="username"
-                            onfocus="clearError('ag-user')"
-                        >
-                    </div>
-                    <span class="input-error"></span>
-                </div>
-
-                <div class="input-group" id="ag-pass">
-                    <label for="a-password">Admin Password</label>
-                    <div class="input-wrapper">
-                        <span class="input-icon">🔒</span>
-                        <input
-                            type="password"
-                            id="a-password"
-                            placeholder="Enter admin password"
-                            required
-                            autocomplete="current-password"
-                            onfocus="clearError('ag-pass')"
-                        >
-                        <button type="button" class="toggle-pass" onclick="togglePassword('a-password', this)">
-                            <span class="eye-icon">👁️</span>
-                        </button>
-                    </div>
-                    <span class="input-error"></span>
-                </div>
-
-                <div class="form-options">
-                    <label class="remember-me">
-                        <input type="checkbox" id="a-remember">
-                        <span class="checkmark"></span>
-                        <span>Remember me</span>
-                    </label>
-                </div>
-
-                <button type="submit" class="login-btn admin-btn" id="a-login-btn">
-                    <span class="btn-text" id="a-btn-text">Login as Admin</span>
-                    <span class="btn-loader hidden" id="a-btn-loader">
-                        <span class="dot-loader"><i></i><i></i><i></i></span>
-                    </span>
-                </button>
-
-            </form>
-
-            <div class="card-footer">
-                <p>Demo: <strong>admin</strong> / <strong>admin123</strong></p>
-            </div>
-        </div>
-
-
-        <!-- ─── BOTTOM FOOTER ─── -->
-        <div class="login-footer" id="login-footer">
-            <p>Shiksha With Sagar © 2025</p>
-            <p class="footer-small">Made with ❤️ by Sagar Sir</p>
-        </div>
-
-    </div>
-
-    <script src="./js/login.js"></script>
 </body>
 </html>
