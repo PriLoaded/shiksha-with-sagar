@@ -37,43 +37,4 @@ document.getElementById("login-form").addEventListener("submit", async function(
 </script>
 
 </body>
-</html><!DOCTYPE html>
-<html>
-<head>
-    <title>Login - Shiksha With Sagar</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body style="font-family:sans-serif; padding:40px;">
-
-<h2>Login</h2>
-
-<form id="login-form">
-    <input type="email" id="login-email" placeholder="Email" required><br><br>
-    <input type="password" id="login-password" placeholder="Password" required><br><br>
-    <button type="submit">Login</button>
-</form>
-
-<p>Don't have an account? <a href="signup.html">Sign Up</a></p>
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/auth.js"></script>
-
-<script>
-redirectIfLoggedIn();
-
-document.getElementById("login-form").addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const email = document.getElementById("login-email").value;
-    const password = document.getElementById("login-password").value;
-
-    const success = await loginUser(email, password);
-
-    if (success) {
-        window.location.href = "student-dashboard.html";
-    }
-});
-</script>
-
-</body>
 </html>
