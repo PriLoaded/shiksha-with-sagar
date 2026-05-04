@@ -7,8 +7,8 @@ console.log("✅ auth.js loaded");
 // Prevent duplicate initialization
 if (!window._supabaseClient) {
 
-    const SUPABASE_URL = "YOUR_SUPABASE_URL";
-    const SUPABASE_ANON_KEY = "YOUR_ANON_KEY";
+    const SUPABASE_URL = "https://rtcszidmnmpyvrikbimi.supabase.co";
+    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0Y3N6aWRtbm1weXZyaWtiaW1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTUyNTUsImV4cCI6MjA5MzM5MTI1NX0.FhqmFZQf9US4fAr9CWQRu9UxsqSXR77BEhY_huKwyNU";
 
     if (!window.supabase) {
         console.error("❌ Supabase CDN not loaded!");
