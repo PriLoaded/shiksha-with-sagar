@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <!-- Supabase CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/auth.js"></script>
     <title>Signup - Shiksha With Sagar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -18,23 +18,32 @@
 
 <p>Already have an account? <a href="login.html">Login</a></p>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/auth.js"></script>
-
 <script>
-redirectIfLoggedIn();
+document.addEventListener("DOMContentLoaded", function() {
 
-document.getElementById("signup-form").addEventListener("submit", async function(e) {
-    e.preventDefault();
+    redirectIfLoggedIn();
 
-    const email = document.getElementById("signup-email").value;
-    const password = document.getElementById("signup-password").value;
+    const form = document.getElementById("signup-form");
 
-    const success = await signUpUser(email, password);
-
-    if (success) {
-        window.location.href = "login.html";
+    if (!form) {
+        console.error("❌ Signup form not found!");
+        return;
     }
+
+    form.addEventListener("submit", async function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById("signup-email").value;
+        const password = document.getElementById("signup-password").value;
+
+        const success = await signUpUser(email, password);
+
+        if (success) {
+            setTimeout(() => {
+                window.location.href = "login.html";
+            }, 1500);
+        }
+    });
 });
 </script>
 
