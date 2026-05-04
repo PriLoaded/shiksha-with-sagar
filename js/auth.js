@@ -1,22 +1,29 @@
 /* ============================================
-   SUPABASE AUTH CONFIGURATION
+   SUPABASE AUTH CONFIGURATION (SAFE VERSION)
    ============================================ */
 
 console.log("✅ auth.js loaded");
 
-const SUPABASE_URL = "https://rtcszidmnmpyvrikbimi.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0Y3N6aWRtbm1weXZyaWtiaW1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTUyNTUsImV4cCI6MjA5MzM5MTI1NX0.FhqmFZQf9US4fAr9CWQRu9UxsqSXR77BEhY_huKwyNU";
+// Prevent duplicate initialization
+if (!window._supabaseClient) {
 
-if (!window.supabase) {
-    console.error("❌ Supabase CDN not loaded!");
+    const SUPABASE_URL = "YOUR_SUPABASE_URL";
+    const SUPABASE_ANON_KEY = "YOUR_ANON_KEY";
+
+    if (!window.supabase) {
+        console.error("❌ Supabase CDN not loaded!");
+    }
+
+    window._supabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+    console.log("✅ Supabase client initialized");
+
 }
 
-const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
-
-console.log("✅ Supabase client initialized");
+const supabase = window._supabaseClient;
 
 /* ============================================
    HELPER: SHOW MESSAGE
