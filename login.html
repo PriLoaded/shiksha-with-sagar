@@ -1,47 +1,92 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login - Shiksha With Sagar</title>
+    <meta charset="UTF-8">
+    <title>Login — Shiksha With Sagar</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="css/login.css">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
-<body style="font-family:sans-serif; padding:40px;">
+<body>
 
-<h2>Login</h2>
+    <!-- Background Decorative Shapes -->
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
 
-<form id="login-form">
-    <input type="text" id="login-email" placeholder="Email or Username" required><br><br>
-    <input type="password" id="login-password" placeholder="Password" required><br><br>
-    <button type="submit">Login</button>
-</form>
+    <!-- Main Container -->
+    <div class="login-container">
 
-<script>
-document.addEventListener("DOMContentLoaded", function() {
+        <!-- Branding -->
+        <div class="brand-section">
+            <div class="logo">📖</div>
+            <h1>Shiksha With Sagar</h1>
+            <p class="tagline">Empowering minds. Building futures.</p>
+        </div>
 
-    const form = document.getElementById("login-form");
+        <!-- Welcome Heading -->
+        <div class="welcome-section">
+            <h2>Welcome Back 👋</h2>
+            <p>Please login to continue your learning journey</p>
+        </div>
 
-    form.addEventListener("submit", function(e) {
-        e.preventDefault();
+        <!-- Cards Wrapper -->
+        <div class="cards-wrapper">
 
-        const email = document.getElementById("login-email").value;
-        const password = document.getElementById("login-password").value;
+            <!-- Student Card -->
+            <div class="login-card">
+                <h3>🎓 Student Login</h3>
 
-        // Simple frontend demo login
-        if (email && password) {
-            localStorage.setItem("sws_user", JSON.stringify({
-                email: email,
-                name: email.split("@")[0],
-                role: "student"
-            }));
+                <div class="input-group">
+                    <span class="input-icon">📧</span>
+                    <input type="text" placeholder="Email or Username">
+                </div>
 
-            window.location.href = "student-dashboard.html";
-        } else {
-            alert("Please enter email and password.");
-        }
-    });
+                <div class="input-group">
+                    <span class="input-icon">🔒</span>
+                    <input type="password" placeholder="Password">
+                </div>
 
-});
-</script>
+                <button class="login-btn student-btn" onclick="studentLogin(this)">
+                    <span class="btn-text">Login as Student</span>
+                    <span class="loader"></span>
+                </button>
+            </div>
+
+            <!-- Admin Card -->
+            <div class="login-card">
+                <h3>🛡 Admin Login</h3>
+
+                <div class="input-group">
+                    <span class="input-icon">👤</span>
+                    <input type="text" placeholder="Admin Username">
+                </div>
+
+                <div class="input-group">
+                    <span class="input-icon">🔑</span>
+                    <input type="password" placeholder="Password">
+                </div>
+
+                <button class="login-btn admin-btn" onclick="adminLogin(this)">
+                    <span class="btn-text">Login as Admin</span>
+                    <span class="loader"></span>
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Shiksha With Sagar</p>
+            <p class="sub-footer">Learn today. Lead tomorrow.</p>
+        </div>
+
+    </div>
+
+<script src="js/login.js"></script>
 
 </body>
 </html>
