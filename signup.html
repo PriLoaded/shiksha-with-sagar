@@ -17,24 +17,56 @@
 
 <p>Already have an account? <a href="login.html">Login</a></p>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="js/auth.js"></script>
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
-    console.log("✅ DOM loaded");
+    console.log("✅ DOM loaded (Signup Page)");
+
+    // Check if already logged in
+    if (typeof redirectIfLoggedIn === "function") {
+        redirectIfLoggedIn();
+    } else {
+        console.error("❌ redirectIfLoggedIn not defined");
+    }
 
     const form = document.getElementById("signup-form");
 
+    if (!form) {
+        console.error("❌ Signup form not found!");
+        return;
+    }
+
+    console.log("✅ Signup form found");
+
     form.addEventListener("submit", async function(e) {
+
         e.preventDefault();
-        console.log("✅ Form submitted");
+        console.log("✅ Signup form submitted");
 
         const email = document.getElementById("signup-email").value;
         const password = document.getElementById("signup-password").value;
 
-        await signUpUser(email, password);
+        console.log("📧 Email entered:", email);
+
+        try {
+            const success = await signUpUser(email, password);
+
+            console.log("Signup result:", success);
+
+            if (success) {
+                alert("Signup successful! Redirecting to login...");
+                setTimeout(() => {
+                    window.location.href = "login.html";
+                }, 1500);
+            }
+
+        } catch (err) {
+            console.error("❌ Unexpected error during signup:", err);
+            alert("Unexpected error occurred.");
+        }
+
     });
+
 });
 </script>
 
