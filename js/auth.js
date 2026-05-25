@@ -1,19 +1,46 @@
-console.log("✅ auth.js loaded");
+console.log("✅ auth.js starting...");
+
+/* ============================================
+   CHECK IF SUPABASE CDN EXISTS
+   ============================================ */
 
 if (!window.supabase) {
     console.error("❌ Supabase CDN not loaded!");
+} else {
+    console.log("✅ Supabase CDN loaded");
 }
 
-const SUPABASE_URL = "https://rtcszidmnmpyvrikbimi.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0Y3N6aWRtbm1weXZyaWtiaW1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTUyNTUsImV4cCI6MjA5MzM5MTI1NX0.FhqmFZQf9US4fAr9CWQRu9UxsqSXR77BEhY_huKwyNU";
+/* ============================================
+   PREVENT DUPLICATE CLIENT CREATION
+   ============================================ */
 
-console.log("Initializing Supabase...");
+if (!window.mySupabaseClient) {
 
-const supabase = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
+    console.log("🔄 Creating Supabase client...");
 
+    const SUPABASE_URL = "YOUR_SUPABASE_URL";
+    const SUPABASE_ANON_KEY = "YOUR_ANON_KEY";
+
+    window.mySupabaseClient = window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_ANON_KEY
+    );
+
+    console.log("✅ Supabase client created");
+
+} else {
+
+    console.log("✅ Reusing existing Supabase client");
+
+}
+
+/* ============================================
+   GLOBAL CLIENT
+   ============================================ */
+
+const supabase = window.mySupabaseClient;
+
+console.log("✅ auth.js fully loaded");
 console.log("✅ Supabase client created");
 
 async function signUpUser(email, password) {
