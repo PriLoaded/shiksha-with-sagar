@@ -742,8 +742,6 @@ a { text-decoration: none; color: inherit; }
     flex-shrink: 0;
 }
 
-.vnb-info {}
-
 .vnb-label {
     font-size: 10px;
     font-weight: 700;
