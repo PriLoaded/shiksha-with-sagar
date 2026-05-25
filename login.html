@@ -23,29 +23,39 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
+    console.log("✅ DOM loaded");
+
+    // Check if already logged in
     redirectIfLoggedIn();
 
-    const form = document.getElementById("signup-form");
+    const form = document.getElementById("login-form");
 
     if (!form) {
-        console.error("❌ Signup form not found!");
+        console.error("❌ Login form not found!");
         return;
     }
 
+    console.log("✅ Login form found");
+
     form.addEventListener("submit", async function(e) {
+
+        console.log("✅ Login submit triggered");
         e.preventDefault();
 
-        const email = document.getElementById("signup-email").value;
-        const password = document.getElementById("signup-password").value;
+        const email = document.getElementById("login-email").value;
+        const password = document.getElementById("login-password").value;
 
-        const success = await signUpUser(email, password);
+        console.log("📧 Email:", email);
+
+        const success = await loginUser(email, password);
 
         if (success) {
-            setTimeout(() => {
-                window.location.href = "login.html";
-            }, 1500);
+            console.log("✅ Redirecting to dashboard...");
+            window.location.href = "student-dashboard.html";
         }
+
     });
+
 });
 </script>
 
