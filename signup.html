@@ -22,28 +22,18 @@
 <script>
 document.addEventListener("DOMContentLoaded", function() {
 
-    redirectIfLoggedIn();
+    console.log("✅ DOM loaded");
 
     const form = document.getElementById("signup-form");
 
-    if (!form) {
-        console.error("❌ Signup form not found!");
-        return;
-    }
-
     form.addEventListener("submit", async function(e) {
         e.preventDefault();
+        console.log("✅ Form submitted");
 
         const email = document.getElementById("signup-email").value;
         const password = document.getElementById("signup-password").value;
 
-        const success = await signUpUser(email, password);
-
-        if (success) {
-            setTimeout(() => {
-                window.location.href = "login.html";
-            }, 1500);
-        }
+        await signUpUser(email, password);
     });
 });
 </script>

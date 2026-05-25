@@ -1,151 +1,65 @@
-/* ============================================
-   SUPABASE AUTH CONFIGURATION (SAFE VERSION)
-   ============================================ */
-
 console.log("✅ auth.js loaded");
 
-// Prevent duplicate initialization
-if (!window._supabaseClient) {
-
-    const SUPABASE_URL = "https://rtcszidmnmpyvrikbimi.supabase.co";
-    const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0Y3N6aWRtbm1weXZyaWtiaW1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTUyNTUsImV4cCI6MjA5MzM5MTI1NX0.FhqmFZQf9US4fAr9CWQRu9UxsqSXR77BEhY_huKwyNU";
-
-    if (!window.supabase) {
-        console.error("❌ Supabase CDN not loaded!");
-    }
-
-    window._supabaseClient = window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_ANON_KEY
-    );
-
-    console.log("✅ Supabase client initialized");
-
+if (!window.supabase) {
+    console.error("❌ Supabase CDN not loaded!");
 }
 
-const supabase = window._supabaseClient;
+const SUPABASE_URL = "https://rtcszidmnmpyvrikbimi.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InJ0Y3N6aWRtbm1weXZyaWtiaW1pIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzc4MTUyNTUsImV4cCI6MjA5MzM5MTI1NX0.FhqmFZQf9US4fAr9CWQRu9UxsqSXR77BEhY_huKwyNU";
 
-/* ============================================
-   HELPER: SHOW MESSAGE
-   ============================================ */
+console.log("Initializing Supabase...");
 
-function showMessage(message, type = "info") {
-    let msgDiv = document.getElementById("auth-message");
+const supabase = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_ANON_KEY
+);
 
-    if (!msgDiv) {
-        msgDiv = document.createElement("div");
-        msgDiv.id = "auth-message";
-        msgDiv.style.marginTop = "15px";
-        msgDiv.style.fontWeight = "600";
-        document.body.appendChild(msgDiv);
-    }
-
-    msgDiv.style.color = type === "error" ? "red" : "green";
-    msgDiv.innerText = message;
-}
-
-/* ============================================
-   SIGN UP
-   ============================================ */
+console.log("✅ Supabase client created");
 
 async function signUpUser(email, password) {
 
-    console.log("🔄 Attempting signup:", email);
+    console.log("🔄 Signup started");
 
     try {
         const { data, error } = await supabase.auth.signUp({
-            email: email,
-            password: password
+            email,
+            password
         });
 
+        console.log("Signup result:", data, error);
+
         if (error) {
-            console.error("❌ Signup error:", error);
-            showMessage(error.message, "error");
+            alert("Error: " + error.message);
             return false;
         }
 
-        console.log("✅ Signup success:", data);
-        showMessage("Signup successful! Check your email.", "success");
+        alert("Signup successful!");
         return true;
 
     } catch (err) {
-        console.error("❌ Unexpected signup error:", err);
-        showMessage("Unexpected error occurred.", "error");
+        console.error("Unexpected error:", err);
+        alert("Unexpected error occurred");
         return false;
     }
 }
-
-/* ============================================
-   LOGIN
-   ============================================ */
 
 async function loginUser(email, password) {
 
-    console.log("🔄 Attempting login:", email);
+    console.log("🔄 Login started");
 
-    try {
-        const { data, error } = await supabase.auth.signInWithPassword({
-            email: email,
-            password: password
-        });
+    const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+    });
 
-        if (error) {
-            console.error("❌ Login error:", error);
-            showMessage(error.message, "error");
-            return false;
-        }
+    console.log("Login result:", data, error);
 
-        console.log("✅ Login success:", data);
-        showMessage("Login successful!", "success");
-        return true;
-
-    } catch (err) {
-        console.error("❌ Unexpected login error:", err);
-        showMessage("Unexpected error occurred.", "error");
+    if (error) {
+        alert("Error: " + error.message);
         return false;
     }
+
+    alert("Login successful!");
+    return true;
 }
 
-/* ============================================
-   LOGOUT
-   ============================================ */
-
-async function logoutUser() {
-    console.log("🔄 Logging out...");
-    await supabase.auth.signOut();
-    window.location.href = "login.html";
-}
-
-/* ============================================
-   CHECK SESSION
-   ============================================ */
-
-async function checkUserSession() {
-    const { data: { session } } = await supabase.auth.getSession();
-    console.log("🔎 Current session:", session);
-    return session;
-}
-
-/* ============================================
-   PROTECT PAGE
-   ============================================ */
-
-async function protectPage() {
-    const session = await checkUserSession();
-    if (!session) {
-        console.log("🚫 No session. Redirecting to login.");
-        window.location.href = "login.html";
-    }
-}
-
-/* ============================================
-   REDIRECT IF LOGGED IN
-   ============================================ */
-
-async function redirectIfLoggedIn() {
-    const session = await checkUserSession();
-    if (session) {
-        console.log("✅ Already logged in. Redirecting to dashboard.");
-        window.location.href = "student-dashboard.html";
-    }
-}
